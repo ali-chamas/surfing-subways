@@ -1,22 +1,16 @@
 import React from "react";
 import "./style.css";
+import Recommendations from "./components/Recommendations";
+import Hero from "./components/Hero";
+import Contact from "./components/Contact";
 
 const App = () => {
   return (
-    <section className="hero-section">
-      <div>
-        <div className="flex column gap align-center p">
-          <h1 className="special-font h1-size">Surfing Subways</h1>
-          <p>Navigate from one station to another with comfort and ease</p>
-          <a
-            href="#recommended-stations"
-            className="btn-style bg-secondary text-white"
-          >
-            Explore
-          </a>
-        </div>
-      </div>
-    </section>
+    <div className="flex column gap">
+      <Hero />
+      <Recommendations />
+      <Contact />
+    </div>
   );
 };
 

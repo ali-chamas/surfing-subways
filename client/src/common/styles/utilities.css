@@ -57,7 +57,7 @@
 }
 
 .h1-size {
-  font-size: 50px;
+  font-size: 65px;
 }
 
 .h-full {
@@ -68,7 +68,7 @@
   padding: 20px;
 }
 .border-radius {
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .hidden {
@@ -96,6 +96,18 @@
 
 .small-p {
   padding: 5px;
+}
+
+.input {
+  background-color: rgb(49, 45, 45);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  outline: none;
+  color: white;
+}
+.input::placeholder {
+  color: rgb(177, 172, 172);
 }
 
 .popup {
@@ -145,7 +157,7 @@
 
 @media (max-width: 768px) {
   .h1-size {
-    font-size: 30px;
+    font-size: 40px;
   }
   .large-font {
     font-size: 28px;
