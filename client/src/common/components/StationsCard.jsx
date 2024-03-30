@@ -10,14 +10,19 @@ const StationsCard = ({ station }) => {
     >
       <div className="station-card-info flex">
         <div className=" flex justify-between p w-full align-center">
-          <div className="flex column small-gap">
+          <div className="flex column gap">
             <h3>{station.title}</h3>
             <RatingStars rating={station.rating} />
             <p>{station.location}</p>
+            <div className="flex small-gap">
+              {station.facilitites.map((f, i) => (
+                <p key={i}>{f}</p>
+              ))}
+            </div>
           </div>
           <a
-            href={`/stations?id=${station.id}`}
-            className="btn-style bg-secondary text-white"
+            href={`/singleStation?id=${station.id}`}
+            className="btn-style bg-secondary text-black"
           >
             View station
           </a>

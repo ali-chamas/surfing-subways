@@ -43,7 +43,7 @@
 }
 
 .contact-form {
-  width: 400px;
+  width: 500px;
   min-height: 450px;
 }
 .contact-form button {
@@ -58,7 +58,12 @@
 
 .contact-section .text-container {
   width: 500px;
-  text-align: center;
+}
+.contact-section .text-container p {
+  font-size: 17px;
+}
+.contact-section .text-container h2 {
+  font-size: 30px;
 }
 
 @media (max-width: 768px) {

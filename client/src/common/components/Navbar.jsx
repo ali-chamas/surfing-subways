@@ -18,7 +18,7 @@ const Navbar = () => {
         <a href="/about">Stations</a>
 
         <a href="/contact">Contact</a>
-        <a href="/login" className="btn-style bg-secondary text-white">
+        <a href="/login" className="btn-style bg-secondary text-black">
           Login
         </a>
       </div>
@@ -30,7 +30,7 @@ const Navbar = () => {
           <a href="/about">Stations</a>
 
           <a href="/contact">Contact</a>
-          <a href="/login" className="btn-style bg-secondary text-white">
+          <a href="/login" className="btn-style bg-secondary text-black">
             Login
           </a>
         </div>

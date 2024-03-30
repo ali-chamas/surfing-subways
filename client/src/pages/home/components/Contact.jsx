@@ -4,7 +4,7 @@ const Contact = () => {
   return (
     <section className="contact-section flex  p align-center">
       <div className="flex justify-center">
-        <div className="flex column align-center gap text-container">
+        <div className="flex column  gap text-container">
           <h2>Become a partner</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt
@@ -22,7 +22,7 @@ const Contact = () => {
             <input type="text" placeholder="station name" className="input" />
             <textarea placeholder="message" className="input"></textarea>
           </form>
-          <button className="btn-style bg-secondary text-white">Send</button>
+          <button className="btn-style bg-secondary text-black">Send</button>
         </div>
       </div>
     </section>
