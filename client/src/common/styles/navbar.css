@@ -1,0 +1,35 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  height: 10vh;
+}
+
+.navbar .mobile-menu-toggle {
+  display: none;
+}
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 10vh;
+  left: 0;
+}
+.navbar .mobile-menu-toggle {
+  display: hidden;
+}
+.desktop-menu {
+  display: flex;
+}
+.navbar a {
+  font-size: 17px;
+}
+@media (max-width: 600px) {
+  .navbar .mobile-menu-toggle {
+    display: block;
+  }
+  .desktop-menu {
+    display: none;
+  }
+  .mobile-menu {
+    display: flex;
+  }
+}

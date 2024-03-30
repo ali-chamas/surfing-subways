@@ -1,0 +1,36 @@
+.text-primary {
+  color: rgb(255, 174, 0);
+}
+.bg-blur {
+  background-color: #1c1c1c43;
+  backdrop-filter: blur(7px);
+}
+.bg-primary {
+  background-color: rgba(0, 0, 0, 0.696);
+}
+.bg-secondary {
+  background-color: rgb(255, 174, 0);
+}
+.bg-blue {
+  background-color: rgb(47, 94, 211);
+}
+.text-gray {
+  color: gray;
+}
+.text-white {
+  color: white;
+}
+.text-black {
+  color: black;
+}
+
+.border-blue {
+  border: rgb(47, 94, 211) 1px solid;
+}
+
+.bg-danger {
+  background-color: rgb(172, 0, 0);
+}
+.text-danger {
+  color: rgb(172, 0, 0);
+}
