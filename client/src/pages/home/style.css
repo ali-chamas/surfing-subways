@@ -68,4 +68,11 @@
   .hero-section a {
     font-size: 14px;
   }
+  .contact-section {
+    flex-direction: column;
+    gap: 60px;
+  }
+  .contact-section > div {
+    width: 100%;
+  }
 }

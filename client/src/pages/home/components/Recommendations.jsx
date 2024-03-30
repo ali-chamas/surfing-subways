@@ -23,7 +23,10 @@ const Recommendations = () => {
     },
   ];
   return (
-    <section className="flex column p recomendations-section gap">
+    <section
+      id="recommended-stations"
+      className="flex column p recomendations-section gap"
+    >
       <h2>Recommended stations</h2>
       <div className="stations-container flex column gap w-full">
         {stations.map((station, i) => (
