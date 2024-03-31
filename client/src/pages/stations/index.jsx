@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import { TbCoinFilled } from "react-icons/tb";
 import { stations } from "../home/components/Recommendations";
 import StationsCard from "../../common/components/StationsCard";
+import StationsMap from "./components/StationsMap";
+
 const Stations = () => {
   return (
     <section className="stations-section flex column  align-center">
-      <div className="map"></div>
+      <div className="map-wrap">
+        {/* <StationsMap stations={stations} /> */}
+      </div>
 
       <div className="flex justify-between bg-primary small-gap p w-full">
         <div className="flex gap">

@@ -12,7 +12,9 @@ const Navbar = () => {
 
   return (
     <nav className="flex w-full align-center justify-between navbar p bg-blur">
-      <div className="large-font special-font">Surfing Subways</div>
+      <a href="/" className="large-font special-font">
+        Surfing Subways
+      </a>
 
       <div className={`flex gap align-center desktop-menu`}>
         <a href="/stations">Stations</a>

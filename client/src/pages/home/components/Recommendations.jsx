@@ -10,6 +10,8 @@ export const stations = [
     rating: 3.5,
     location: "Beirut,Lebanon",
     facilitites: ["restroom", "coffee shop"],
+    longtitude: 16.62662018,
+    latitude: 49.2125578,
   },
   {
     id: 2,
@@ -19,6 +21,8 @@ export const stations = [
     rating: 4,
     location: "Beirut,Lebanon",
     facilitites: ["restroom", "coffee shop", "caffeteria"],
+    longtitude: 16.52662018,
+    latitude: 49.2125578,
   },
 ];
 const Recommendations = () => {
