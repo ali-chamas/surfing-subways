@@ -1,0 +1,32 @@
+.stations-section {
+  margin-top: 10vh;
+  padding: 15px 50px;
+  gap: 50px;
+}
+
+.stations-section .map {
+  width: 990px;
+  height: 450px;
+  background-color: rgba(21, 228, 255, 0.685);
+  align-self: center;
+}
+
+.stations-section select {
+  padding: 6px;
+}
+.stations-section input {
+  padding: 6px;
+}
+
+.stations-section p {
+  padding: 6px;
+}
+
+@media (max-width: 990px) {
+  .stations-section {
+    padding: 15px 15px;
+  }
+  .stations-section .map {
+    width: 320px;
+  }
+}

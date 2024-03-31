@@ -15,7 +15,7 @@ const Navbar = () => {
       <div className="large-font special-font">Surfing Subways</div>
 
       <div className={`flex gap align-center desktop-menu`}>
-        <a href="/about">Stations</a>
+        <a href="/stations">Stations</a>
 
         <a href="/contact">Contact</a>
         <a href="/login" className="btn-style bg-secondary text-black">
@@ -27,7 +27,7 @@ const Navbar = () => {
         <div
           className={`mobile-menu bg-blur column w-full align-center gap p `}
         >
-          <a href="/about">Stations</a>
+          <a href="/stations">Stations</a>
 
           <a href="/contact">Contact</a>
           <a href="/login" className="btn-style bg-secondary text-black">

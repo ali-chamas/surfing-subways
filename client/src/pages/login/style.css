@@ -1,0 +1,24 @@
+.login-section {
+  margin-top: 10vh;
+  height: 90vh;
+}
+.login-section > div {
+  overflow: hidden;
+}
+
+.login-section > div > div {
+  width: 500px;
+  height: 420px;
+}
+.login-section img {
+  width: 500px;
+  height: 420px;
+}
+
+.login-section .form {
+  padding: 10px 70px;
+}
+
+.login-section .form button {
+  font-size: 17px;
+}
