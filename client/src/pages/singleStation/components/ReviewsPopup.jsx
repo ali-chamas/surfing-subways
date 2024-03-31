@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Reviews from './Reviews'
+import AddReviewPopup from './AddReviewPopup'
 
 const ReviewsPopup = ({review, setOpenReviewPopup}) => {
 
@@ -9,13 +10,15 @@ const ReviewsPopup = ({review, setOpenReviewPopup}) => {
   return (
     <div className='popup'>
       
-      {openAddReviewPopup && <ReviewsPopup review={review} setOpenReviewPopup={setOpenReviewPopup}/>}
+      {openAddReviewPopup && <AddReviewPopup review={review} setOpenAddReviewPopup={setOpenAddReviewPopup}/>}
 
       <div className='flex column align-center popup-child bg-default border-radius gap p'>
+
         <div className='flex row gap align-center'>
-          <h1 className='text-primary'>REVIEWS</h1>
+          <h1 className='text-primary letter-spacing'>REVIEWS</h1>
           <i className="icon-review-orange"></i>
         </div>
+        
         <div className='flex column w-full mg gap'>
         {review.map((rev, i) => (
           <Reviews review={rev} key={i}/>
@@ -27,7 +30,6 @@ const ReviewsPopup = ({review, setOpenReviewPopup}) => {
         }} className='exit cursor-pointer bold'>X</p>
 
         <p onClick={()=>{
-          setOpenReviewPopup(false);
           setOpenAddReviewPopup(true);
         }} className='add cursor-pointer bg-secondary text-black bold'>ADD</p>
 
