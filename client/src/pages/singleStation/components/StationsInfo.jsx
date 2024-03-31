@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/stationInfo.css";
+import "../stationInfo.css";
 
-import RatingStars from "./RatingStars";
+import RatingStars from "../../../common/components/RatingStars";
 
 const StationsInfo = ({stationInfo}) => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import StationsInfo from "../../../common/components/StationsInfo";
+import StationsInfo from "./StationsInfo";
 
 const Info = () => {
 

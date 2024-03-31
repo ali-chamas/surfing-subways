@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/stationRide.css";
+import "../stationRide.css";
 
-import RatingStars from "./RatingStars";
+import RatingStars from "../../../common/components/RatingStars";
 
 const StationsRide = ({stationRide}) => {
   return (
