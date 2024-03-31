@@ -8,17 +8,46 @@
 
 .login-section > div > div {
   width: 500px;
-  height: 420px;
+  height: 498px;
 }
 .login-section img {
   width: 500px;
-  height: 420px;
+  height: 498px;
 }
 
 .login-section .form {
-  padding: 10px 70px;
+  padding: 10px 90px;
+  gap: 20px;
 }
 
 .login-section .form button {
   font-size: 17px;
+}
+
+.login-section img {
+  object-fit: cover;
+}
+
+@media (max-width: 1100px) {
+  .login-section > div > div {
+    width: 350px;
+    height: 398px;
+  }
+  .login-section img {
+    width: 350px;
+    height: 398px;
+  }
+
+  .login-section .form {
+    padding: 5px 30px;
+  }
+}
+
+@media (max-width: 780px) {
+  .login-section > div {
+    flex-direction: column;
+  }
+  .login-section .img-container {
+    display: none;
+  }
 }

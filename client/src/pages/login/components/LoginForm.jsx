@@ -12,11 +12,16 @@ const LoginForm = ({ setLogin }) => {
         </button>
         <small className="cursor-pointer">Forgot password?</small>
         <small>
-          Doesn;t have an account?{" "}
-          <span className="text-primary cursor-pointer">signup</span>
+          Doesn't have an account?{" "}
+          <span
+            className="text-primary cursor-pointer"
+            onClick={() => setLogin(false)}
+          >
+            signup
+          </span>
         </small>
       </div>
-      <div className="">
+      <div className="img-container">
         <img src={loginImg} alt="" />
       </div>
     </div>

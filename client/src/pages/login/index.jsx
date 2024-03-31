@@ -4,13 +4,15 @@ import "./style.css";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 const Login = () => {
-  const [login, setLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);
+  console.log(isLogin);
   return (
     <section className="login-section flex center">
-      isLogin
-      <LoginForm setLogin={setLogin} />
-      :
-      <SignupForm setLogin={setLogin} />
+      {isLogin ? (
+        <LoginForm setLogin={setIsLogin} />
+      ) : (
+        <SignupForm setLogin={setIsLogin} />
+      )}
     </section>
   );
 };
