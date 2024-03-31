@@ -1,65 +1,56 @@
 <?php
-
 namespace App\Models;
-
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Model;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model
+class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory;
-    protected $fillable = ['username', 'email', 'password', 'coins', 'location', 'status', 'role_id', 'profile_url'];
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
+    use HasFactory, Notifiable;
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+    
+    /**
+     * Get the identifier that will be stored in the subject claim of the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier() {
+        return $this->getKey();
     }
-
-    public function coinRequests()
-    {
-        return $this->hasMany(CoinRequest::class);
-    }
-
-    public function bookings()
-    {
-        return $this->hasMany(Booking::class);
-    }
-
-    public function tickets()
-    {
-        return $this->hasMany(Ticket::class);
-    }
-
-    public function rideReviews()
-    {
-        return $this->hasMany(RideReview::class);
-    }
-
-    public function stationReviews()
-    {
-        return $this->hasMany(StationReview::class);
-    }
-
-    public function invitationsSent()
-    {
-        return $this->hasMany(Invitation::class, 'from');
-    }
-
-    public function invitationsReceived()
-    {
-        return $this->hasMany(Invitation::class, 'to');
-    }
-
-    public function chatsSent()
-    {
-        return $this->hasMany(Chat::class, 'sender');
-    }
-
-    public function chatsReceived()
-    {
-        return $this->hasMany(Chat::class, 'receiver');
-    }
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims() {
+        return [];
+    }    
 }

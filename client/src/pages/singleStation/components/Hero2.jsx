@@ -5,7 +5,7 @@ const Hero2 = () => {
     <section className="hero2-section">
       <div>
         <div className="flex column gap align-center p">
-          <h1 className="special-font h1-size">Surfing Subways</h1>
+          <h1 className="special-font h1-size">Aazmi Station</h1>
         </div>
       </div>
     </section>

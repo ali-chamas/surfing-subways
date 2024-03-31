@@ -1,7 +1,7 @@
 import React from "react";
-import "../styles/stationInfo.css";
+import "../stationInfo.css";
 
-import RatingStars from "./RatingStars";
+import RatingStars from "../../../common/components/RatingStars";
 
 const StationsInfo = ({stationInfo}) => {
   return (
@@ -22,7 +22,7 @@ const StationsInfo = ({stationInfo}) => {
         <div className="flex row small-gap">
           <h3 className="text-primary text-mg-right">Facilities: </h3>
           {stationInfo.facilitites.map((f, i) => (
-                <h3 key={i}>{f}</h3>
+                <h3 key={i}>{`${f},`}</h3>
               ))}
         </div>
       </div>

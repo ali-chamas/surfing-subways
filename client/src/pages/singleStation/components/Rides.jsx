@@ -1,5 +1,5 @@
 import React from 'react'
-import StationsRide from "../../../common/components/StationsRide";
+import StationsRide from './StationsRide'
 
 const Rides = () => {
 

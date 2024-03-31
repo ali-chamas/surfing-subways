@@ -122,17 +122,21 @@
   position: fixed;
   height: 100vh;
   width: 100vw;
-  background-color: rgba(4, 4, 4, 0.395);
+  background-color: rgba(4, 4, 4, 0.649);
   top: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 20;
 }
 
 .popup-child {
   padding: 40px;
-  max-width: 500px;
+  width: 500px;
+  max-height: 500px;
+  overflow: auto;
+  position: relative;
 }
 
 .popup-child input[type="text"] {
@@ -150,8 +154,16 @@
   max-width: 460px;
   width: 500px;
 }
+
 .popup-child label {
   margin-right: 9px;
+}
+
+.popup-child .exit{
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 15px;
 }
 
 .cursor-pointer {
