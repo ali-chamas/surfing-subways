@@ -75,15 +75,24 @@
 .p {
   padding: 20px;
 }
+.small-gap {
+  gap: 5px;
+}
+.small-p {
+  padding: 5px;
+}
+
 .border-radius {
   border-radius: 10px;
 }
 
+.text-mg-right{
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 .hidden {
   display: none;
-}
-.small-gap {
-  gap: 5px;
 }
 
 .text-align {
@@ -102,9 +111,6 @@
   outline: none;
 }
 
-.small-p {
-  padding: 5px;
-}
 
 .input {
   background-color: rgb(49, 45, 45);
@@ -132,7 +138,7 @@
 }
 
 .popup-child {
-  padding: 40px;
+  padding: 20px;
   width: 500px;
   max-height: 500px;
   overflow: auto;
@@ -146,6 +152,7 @@
   outline: none;
   max-width: 500px;
 }
+
 .popup-child textarea {
   padding: 10px;
   border-radius: 7px;
@@ -159,16 +166,37 @@
   margin-right: 9px;
 }
 
+.popup-child h1 {
+  top: 0;
+}
+
 .popup-child .exit{
   position: absolute;
   top: 0;
   right: 0;
   margin: 15px;
+  text-align: center;
+  width: 40px;
+}
+
+.popup-child .add{
+  position: absolute;
+  top: 6%;
+  right: 0;
+  margin: 15px;
+  width: 40px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.popup-child .add:hover{
+  opacity: 70%;
 }
 
 .cursor-pointer {
   cursor: pointer;
 }
+
 .special-font {
   font-family: "Caveat Brush", cursive;
   font-weight: 400;

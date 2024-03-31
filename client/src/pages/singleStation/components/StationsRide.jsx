@@ -10,37 +10,19 @@ const StationsRide = ({stationRide}) => {
     {
       id: 1,
     name: 'JANA HALABI',
-    desc: 'It was a great experience!',
+    desc: 'It was a great experience!It was a great experience!It was a great experience!It was a great experience!',
     rating: 3.5
   },
     {
       id: 2,
     name: 'JANA HALABI',
-    desc: 'It was a great experience!',
+    desc: 'It was a great experience!It was a great experience!It was a great experience!It was a great experience!',
     rating: 3.5
   },
     {
     id: 3,
     name: 'JANA HALABI',
-    desc: 'It was a great experience!',
-    rating: 3.5
-  },
-    {
-      id: 4,
-    name: 'JANA HALABI',
-    desc: 'It was a great experience!',
-    rating: 3.5
-  },
-    {
-      id: 5,
-    name: 'JANA HALABI',
-    desc: 'It was a great experience!',
-    rating: 3.5
-  },
-    {
-    id: 6,
-    name: 'JANA HALABI',
-    desc: 'It was a great experience!',
+    desc: 'It was a great experience!It was a great experience!It was a great experience!It was a great experience!',
     rating: 3.5
   },
   ]
@@ -76,7 +58,7 @@ const StationsRide = ({stationRide}) => {
         <button className="bg-default flex justify-between align-center bold text-white" onClick={()=>{
           setOpenReviewPopup(true)
         }}>View Reviews <i className="icon-review"></i></button>
-        <button className="bg-default flex justify-between align-center bold text-primary">Buy a Ticket <i className="icon-ticket bg-secondary"></i></button>
+        <button className="bg-secondary flex justify-between align-center bold text-black">Buy a Ticket <i className="icon-ticket bg-secondary"></i></button>
       </div>
     </div>
   )

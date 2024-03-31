@@ -34,7 +34,14 @@
     height: 31px;
     background-image: url(../../assets/icons/ic_outline-rate-review.svg);
 }
-  
+
+.icon-review-orange {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/ic_outline-rate-review-orange.svg);
+}
+
 .icon-ticket {
     display: flex;
     width: 31px;
