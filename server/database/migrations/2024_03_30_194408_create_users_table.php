@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('coins');
+            $table->integer('coins')-> nullable();
             $table->string('location');
             $table->string('status');
             $table->unsignedBigInteger('role_id');
