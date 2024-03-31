@@ -53,6 +53,9 @@
 .justify-center {
   justify-content: center;
 }
+.align-end {
+  align-items: end;
+}
 .align-center {
   align-items: center;
 }
@@ -90,6 +93,10 @@
 .text-mg-right{
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.mg-top{
+  margin-top: 5px;
 }
 
 .hidden {

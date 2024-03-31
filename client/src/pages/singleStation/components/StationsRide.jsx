@@ -3,6 +3,7 @@ import "../stationRide.css";
 
 import RatingStars from "../../../common/components/RatingStars";
 import ReviewsPopup from "./ReviewsPopup";
+import BuyTicketPopup from "./BuyTicketPopup";
 
 const StationsRide = ({stationRide}) => {
 
@@ -27,14 +28,17 @@ const StationsRide = ({stationRide}) => {
   },
   ]
     
-
   const [openReviewPopup, setOpenReviewPopup] = useState(false);
+  const [openBuyTicketPopup, setOpenBuyTicketPopup] = useState(false);
 
 
   return (
     <div className="flex row justify-between w-full bg-black stationRide-card">
 
       {openReviewPopup && <ReviewsPopup review={review} setOpenReviewPopup={setOpenReviewPopup}/>}
+
+      {openBuyTicketPopup && <BuyTicketPopup
+      setOpenBuyTicketPopup={setOpenBuyTicketPopup}/>}
       
       <div className="flex column gap stationRide-section1">
         <div className="flex row">
@@ -56,9 +60,11 @@ const StationsRide = ({stationRide}) => {
       </div>
       <div className="flex column center gap stationRide-section3">
         <button className="bg-default flex justify-between align-center bold text-white" onClick={()=>{
-          setOpenReviewPopup(true)
+          setOpenReviewPopup(true);
         }}>View Reviews <i className="icon-review"></i></button>
-        <button className="bg-secondary flex justify-between align-center bold text-black">Buy a Ticket <i className="icon-ticket bg-secondary"></i></button>
+        <button className="bg-secondary flex justify-between align-center bold text-black" onClick={()=>{
+          setOpenBuyTicketPopup(true);
+        }}>Buy a Ticket <i className="icon-ticket bg-secondary"></i></button>
       </div>
     </div>
   )
