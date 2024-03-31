@@ -12,7 +12,7 @@ const Stations = () => {
         {/* <StationsMap stations={stations} /> */}
       </div>
 
-      <div className="flex justify-between bg-primary small-gap p w-full">
+      <div className="flex justify-between bg-primary small-gap p border-radius w-full">
         <div className="flex gap">
           <input
             type="search"
