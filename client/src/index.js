@@ -15,8 +15,10 @@ root.render(
       <Routes>
         <Route path="/" element={<Layout children={<App />} />} />
         <Route
-          path="/singleStation"
-          element={<Layout children={<SingleStation />} />}
+          path="/singleStation/:id"
+          element={
+            <Layout children={<Layout children={<SingleStation />} />} />
+          }
         />
       </Routes>
     </BrowserRouter>

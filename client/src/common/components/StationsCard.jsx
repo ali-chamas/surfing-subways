@@ -21,7 +21,7 @@ const StationsCard = ({ station }) => {
             </div>
           </div>
           <a
-            href={`/singleStation?id=${station.id}`}
+            href={`/singleStation/${station.id}`}
             className="btn-style bg-secondary text-black"
           >
             View station

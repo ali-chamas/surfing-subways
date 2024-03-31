@@ -6,42 +6,60 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
+    protected $fillable = ['username', 'email', 'password', 'coins', 'location', 'status', 'role_id', 'profile_url'];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function role()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsTo(Role::class);
+    }
+
+    public function coinRequests()
+    {
+        return $this->hasMany(CoinRequest::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function rideReviews()
+    {
+        return $this->hasMany(RideReview::class);
+    }
+
+    public function stationReviews()
+    {
+        return $this->hasMany(StationReview::class);
+    }
+
+    public function invitationsSent()
+    {
+        return $this->hasMany(Invitation::class, 'from');
+    }
+
+    public function invitationsReceived()
+    {
+        return $this->hasMany(Invitation::class, 'to');
+    }
+
+    public function chatsSent()
+    {
+        return $this->hasMany(Chat::class, 'sender');
+    }
+
+    public function chatsReceived()
+    {
+        return $this->hasMany(Chat::class, 'receiver');
     }
 }
