@@ -9,7 +9,6 @@ import Layout from "./common/components/Layout";
 import SingleStation from "./pages/singleStation";
 import Stations from "./pages/stations";
 import Login from "./pages/login";
-import StationsMap from "./pages/stations/components/StationsMap";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,13 +19,7 @@ root.render(
         <Route path="/stations" element={<Layout children={<Stations />} />} />
         <Route
           path="/singleStation/:id"
-<<<<<<< HEAD
           element={<Layout children={<SingleStation />} />}
-=======
-          element={
-            <Layout children={<SingleStation/>}/>
-          }
->>>>>>> origin/Abbas-Branch
         />
         <Route path="/login" element={<Layout children={<Login />} />} />
       </Routes>
