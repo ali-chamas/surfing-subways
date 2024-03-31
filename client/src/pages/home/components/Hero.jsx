@@ -9,7 +9,7 @@ const Hero = () => {
           <p>Navigate from one station to another with comfort and ease</p>
           <a
             href="#recommended-stations"
-            className="btn-style bg-secondary text-white"
+            className="btn-style bg-secondary text-black"
           >
             Explore
           </a>

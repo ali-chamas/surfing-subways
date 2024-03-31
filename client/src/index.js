@@ -20,7 +20,13 @@ root.render(
         <Route path="/stations" element={<Layout children={<Stations />} />} />
         <Route
           path="/singleStation/:id"
+<<<<<<< HEAD
           element={<Layout children={<SingleStation />} />}
+=======
+          element={
+            <Layout children={<SingleStation/>}/>
+          }
+>>>>>>> origin/Abbas-Branch
         />
         <Route path="/login" element={<Layout children={<Login />} />} />
       </Routes>
