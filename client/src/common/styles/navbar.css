@@ -20,7 +20,7 @@
 .desktop-menu {
   display: flex;
 }
-.navbar a {
+.navbar > div a {
   font-size: 17px;
 }
 @media (max-width: 600px) {

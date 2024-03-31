@@ -12,10 +12,12 @@ const Navbar = () => {
 
   return (
     <nav className="flex w-full align-center justify-between navbar p bg-blur">
-      <div className="large-font special-font">Surfing Subways</div>
+      <a href="/" className="large-font special-font">
+        Surfing Subways
+      </a>
 
       <div className={`flex gap align-center desktop-menu`}>
-        <a href="/about">Stations</a>
+        <a href="/stations">Stations</a>
 
         <a href="/contact">Contact</a>
         <a href="/login" className="btn-style bg-secondary text-black">
@@ -27,7 +29,7 @@ const Navbar = () => {
         <div
           className={`mobile-menu bg-blur column w-full align-center gap p `}
         >
-          <a href="/about">Stations</a>
+          <a href="/stations">Stations</a>
 
           <a href="/contact">Contact</a>
           <a href="/login" className="btn-style bg-secondary text-black">

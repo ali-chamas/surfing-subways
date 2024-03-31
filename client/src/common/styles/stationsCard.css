@@ -21,7 +21,7 @@
   padding: 70px 60px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 990px) {
   .station-card {
     height: 300px;
     width: 300px;

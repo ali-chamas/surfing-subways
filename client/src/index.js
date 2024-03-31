@@ -7,6 +7,9 @@ import App from "./pages/home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./common/components/Layout";
 import SingleStation from "./pages/singleStation";
+import Stations from "./pages/stations";
+import Login from "./pages/login";
+import StationsMap from "./pages/stations/components/StationsMap";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,12 +17,12 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout children={<App />} />} />
+        <Route path="/stations" element={<Layout children={<Stations />} />} />
         <Route
           path="/singleStation/:id"
-          element={
-            <Layout children={<SingleStation/>}/>
-          }
+          element={<Layout children={<SingleStation />} />}
         />
+        <Route path="/login" element={<Layout children={<Login />} />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

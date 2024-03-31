@@ -32,6 +32,9 @@
   justify-content: center;
   align-items: center;
 }
+.big-gap {
+  gap: 25px;
+}
 
 .w-full {
   width: 100%;

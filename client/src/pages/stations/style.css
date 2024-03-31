@@ -1,0 +1,35 @@
+.stations-section {
+  margin-top: 10vh;
+  padding: 15px 50px;
+  gap: 50px;
+}
+
+.stations-section .map {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+}
+
+.stations-section select {
+  padding: 6px;
+}
+.stations-section input {
+  padding: 6px;
+}
+
+.stations-section p {
+  padding: 6px;
+}
+
+.map-wrap {
+  position: relative;
+  width: 100%;
+  height: calc(50vh);
+}
+@media (max-width: 990px) {
+  .stations-section {
+    padding: 15px 15px;
+  }
+}
