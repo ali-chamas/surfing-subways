@@ -16,7 +16,7 @@ class ReviewController extends Controller
             'message' => 'nullable|string|max:255',
         ]);
 
-        // Check if the user has a booking for the specified ride with onboard or done status
+        // Check if the user has a booking for the specified ride with onboard or arrived status
         $userBooking = Booking::where('ride_id', $request->ride_id)
             ->where('user_id', auth()->id())
             ->whereIn('status', ['onboard', 'done'])

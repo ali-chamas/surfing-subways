@@ -3,21 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
+
     public function register(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            'location' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 400);
+        }
+
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'password' => Hash::make($request->password),
             'location' => $request->location,
-            'status' => 'active', //  default status for new users
-            'role_id' => 1, // Assign role ID for passengers
+            'status' => 'active',
+            'role_id' => 1, // Assuming passenger role
         ]);
 
         return response()->json(['message' => 'User registered successfully'], 201);
@@ -27,61 +41,53 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('auth_token')->plainTextToken;
-
-            return response()->json(['token' => $token], 200);
+        if (!$token = Auth::attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        return $this->respondWithToken($token);
     }
 
-    public function logout(Request $request)
+    public function me()
     {
-        $request->user()->currentAccessToken()->delete();
-
-        return response()->json(['message' => 'Logged out successfully'], 200);
+        return response()->json(Auth::user());
     }
 
-    public function forgotPassword(Request $request)
+
+    public function logout()
     {
-        $request->validate(['email' => 'required|email']);
+        Auth::logout();
 
-        Password::sendResetLink($request->only('email'));
-
-        return response()->json(['message' => 'Password reset link sent to your email'], 200);
+        return response()->json(['message' => 'Successfully logged out']);
     }
 
-    public function resetPassword(Request $request)
+    public function refresh()
     {
-        $request->validate([
-            'email' => 'required|email',
-            'token' => 'required|string',
-            'password' => 'required|string|min:8|confirmed',
+        return $this->respondWithToken(Auth::refresh());
+    }
+
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::factory()->getTTL() * 60,
         ]);
-
-        $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
-                $user->password = bcrypt($password);
-                $user->save();
-            }
-        );
-
-        if ($status == Password::PASSWORD_RESET) {
-            return response()->json(['message' => 'Password reset successfully'], 200);
-        } else {
-            return response()->json(['message' => 'Password reset failed'], 400);
-        }
     }
-    
-    // Authenticate user as guest
-
-    public function guestLogin()
+    protected function generateToken(User $user)
     {
-        $accessToken = Auth::login(User::find(4)); 
-        return response()->json(['access_token' => $accessToken, 'token_type' => 'Bearer']);
+        return JWTAuth::fromUser($user);
     }
 
+    protected function sendToken(User $user)
+    {
+        $token = $this->generateToken($user);
+
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::factory()->getTTL() * 60
+        ]);
+    }
 }
+
