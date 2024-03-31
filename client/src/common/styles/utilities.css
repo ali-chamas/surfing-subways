@@ -53,6 +53,10 @@
   align-items: center;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .gap {
   gap: 15px;
 }
@@ -175,3 +179,15 @@
     max-width: 260px;
   }
 }
+
+.cairo-text {
+  font-family: "Cairo", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
+}
+
+
+

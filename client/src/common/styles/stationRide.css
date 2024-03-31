@@ -1,0 +1,46 @@
+.stationRide-card {
+    border-radius: 15px;
+}
+
+.stationRide-section1 {
+    width: 50%;
+    padding: 15px 50px;
+}
+.stationRide-section2 {
+    width: 20%;
+    padding: 20px;
+}
+.stationRide-section3 {
+    width: 20%;
+    padding: 10px;
+}
+
+.stationRide-section3 button{
+    width: 180px;
+    height: 50px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.stationRide-section3 button:hover{
+    opacity: 70%;
+}
+
+.icon-review {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/ic_outline-rate-review.svg);
+}
+  
+.icon-ticket {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/ph_ticket-bold.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 5px;
+}

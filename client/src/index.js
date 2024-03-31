@@ -17,7 +17,7 @@ root.render(
         <Route
           path="/singleStation/:id"
           element={
-            <Layout children={<Layout children={<SingleStation />} />} />
+            <Layout children={<SingleStation/>}/>
           }
         />
       </Routes>
