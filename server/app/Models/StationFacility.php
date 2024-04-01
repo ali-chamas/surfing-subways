@@ -2,20 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class StationFacility extends Model
+class StationFacility extends Pivot
 {
-    use HasFactory;
-    
-    protected $fillable = ['facility_id', 'station_id'];
+    protected $table = 'station_facilities';
 
-    public function stations(){
-        return $this->belongsTo(Station::class);
-    }
-    
-    public function facilities(){
-        return $this->belongsTo(Facility::class);
-    }
+    protected $fillable = ['station_id', 'facility_id'];
 }

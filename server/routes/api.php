@@ -7,7 +7,10 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\CoinRequestController;
+use App\Http\Controllers\CoinsRequestController;
+use App\Http\Controllers\StationController;
+use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\StationFacilityController;
 
 
 
@@ -28,10 +31,10 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 //auth Controllers
 
-Route::post('/login', [AuthController::class, 'login']); // Login route
-Route::post('/register', [AuthController::class, 'register']); // Register route
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
- 
+
 
 //role Controllers
 
@@ -52,22 +55,19 @@ Route::delete('/rides/{id}', [RideController::class, 'destroy']);
 
 
 //Chats Controllers
+Route::post('/chats', [ChatController::class, 'sendMessage']);
+Route::get('/chats', [ChatController::class, 'getChats']);
 
-Route::middleware('auth:sanctum')->group(function () {
-
-    Route::post('/chats', [ChatController::class, 'sendMessage']);
-    Route::get('/chats', [ChatController::class, 'getChats']);
-});
 
 
 //CoinRequest Controllers
 
-Route::post('/coin-requests', [CoinRequestController::class, 'store'])->middleware('auth:sanctum');
-Route::get('/coin-requests', [CoinRequestController::class, 'index'])->middleware('auth:sanctum');
-Route::get('/coin-requests/{id}', [CoinRequestController::class, 'show'])->middleware('auth:sanctum');
-Route::put('/coin-requests/{id}', [CoinRequestController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('/coin-requests/{id}', [CoinRequestController::class, 'destroy'])->middleware('auth:sanctum');
-Route::put('/coin-requests/{id}/process', [CoinRequestController::class, 'processRequest'])->middleware('auth:sanctum');
+Route::post('/coin-requests', [CoinsRequestController::class, 'store']);
+Route::get('/coin-requests', [CoinsRequestController::class, 'index']);
+Route::get('/coin-requests/{id}', [CoinsRequestController::class, 'show']);
+Route::put('/coin-requests/{id}', [CoinsRequestController::class, 'update']);
+Route::delete('/coin-requests/{id}', [CoinsRequestController::class, 'destroy']);
+Route::put('/coin-requests/{id}/process', [CoinsRequestController::class, 'processRequest']);
 
 
 //BranchInvitation Controllers
@@ -77,3 +77,30 @@ use App\Http\Controllers\InvitationController;
 // Define routes for sending invitations and canceling invitations
 Route::post('invitations', [InvitationController::class, 'sendInvitation']);
 Route::delete('invitations/{id}', [InvitationController::class, 'cancelInvitation']);
+
+
+//Station Controllers
+
+Route::get('/stations', [StationController::class, 'index']);
+Route::get('/stations/{id}', [StationController::class, 'show']);
+Route::post('/stations', [StationController::class, 'store']);
+Route::put('/stations/{id}', [StationController::class, 'update']);
+Route::delete('/stations/{id}', [StationController::class, 'destroy']);
+
+
+//StationFacility Controllers
+
+Route::get('/station_facilities', [StationFacilityController::class, 'index']);
+Route::get('/station_facilities/{id}', [StationFacilityController::class, 'show']);
+Route::post('/station_facilities', [StationFacilityController::class, 'store']);
+Route::put('/station_facilities/{id}', [StationFacilityController::class, 'update']);
+Route::delete('/station_facilities/{id}', [StationFacilityController::class, 'destroy']);
+
+
+//facility Controllers
+
+Route::get('/facilities', [FacilityController::class, 'index']);
+Route::get('/facilities/{id}', [FacilityController::class, 'show']);
+Route::post('/facilities', [FacilityController::class, 'store']);
+Route::put('/facilities/{id}', [FacilityController::class, 'update']);
+Route::delete('/facilities/{id}', [FacilityController::class, 'destroy']);

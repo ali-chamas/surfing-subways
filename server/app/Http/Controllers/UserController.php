@@ -8,30 +8,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function register(Request $request)
-    {
-
-        $request->validate([
-            'username' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'location' => 'required',
-        ]);
-
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'location' => $request->location,
-            'status' => 'active', 
-            'role_id' => 1, 
-        ]);
-
-        $token = $user->createToken('user_token')->plainTextToken;
-
-        return response()->json(['token' => $token, 'user' => $user], 201);
-    }
-
+    
     public function index()
     {
         $users = User::all();
@@ -73,4 +50,4 @@ class UserController extends Controller
 
         return response()->json(['message' => 'User deleted successfully']);
     }
-}
+} 

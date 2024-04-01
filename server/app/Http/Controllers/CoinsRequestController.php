@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\CoinRequest;
 use Illuminate\Support\Facades\Auth;
 
-class CoinRequestController extends Controller
+class CoinsRequestController extends Controller
 {
     public function index()
     {
@@ -26,13 +26,17 @@ class CoinRequestController extends Controller
             'amount' => 'required|integer|min:1',
         ]);
 
+        $defaultApprovedBy = 1;
+        $userId = 1; 
+
         $coinRequest = CoinRequest::create([
-            'user_id' => Auth::id(),
+            'user_id' => $userId, // Assuming you're using authentication to get the user ID
             'amount' => $request->amount,
             'status' => 'Pending',
+            'approved_by' => $defaultApprovedBy,
         ]);
 
-        return response()->json(['message' => 'Coin request submitted successfully', 'request_id' => $coinRequest->id], 200);
+        return response()->json(['message' => 'Coin request submitted successfully', 'request_id' => $coinRequest->id], 201);
     }
 
     public function update(Request $request, $id)
@@ -53,14 +57,14 @@ class CoinRequestController extends Controller
         return response()->json(['message' => 'Coin request deleted successfully'], 200);
     }
 
-    public function processRequest(Request $request, $id)
-    {
-        $coinRequest = CoinRequest::findOrFail($id);
+    // public function processRequest(Request $request, $id)
+    // {
+    //     $coinRequest = CoinRequest::findOrFail($id);
 
-        $coinRequest->status = $request->status;
-        $coinRequest->approved_by = Auth::id();
-        $coinRequest->save();
+    //     $coinRequest->status = $request->status;
+    //     $coinRequest->approved_by = Auth::id();
+    //     $coinRequest->save();
 
-        return response()->json(['message' => 'Coin request processed successfully'], 200);
-    }
+    //     return response()->json(['message' => 'Coin request processed successfully'], 200);
+    // }
 }

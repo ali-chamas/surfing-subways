@@ -7,11 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -24,6 +22,7 @@ class AuthController extends Controller
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
+        $defaultRoleId = 3;
 
         $user = User::create([
             'username' => $request->username,
@@ -31,63 +30,30 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'location' => $request->location,
             'status' => 'active',
-            'role_id' => 1, // Assuming passenger role
+            'role_id' => $defaultRoleId, // Assuming passenger role
         ]);
 
-        return response()->json(['message' => 'User registered successfully'], 201);
+        return response()->json(['message' => 'User registered successfully',$user], 201);
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-        if (!$token = Auth::attempt($credentials)) {
+        $user = User::where('email', $email)->first();
+    
+        if ($user && Hash::check($password, $user->password)) {
+            return response()->json(['user' => $user, 'message' => 'Login successful'], 200);
+        } else {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-
-        return $this->respondWithToken($token);
     }
-
-    public function me()
-    {
-        return response()->json(Auth::user());
-    }
-
-
+    
     public function logout()
     {
         Auth::logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
-
-    public function refresh()
-    {
-        return $this->respondWithToken(Auth::refresh());
-    }
-
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60,
-        ]);
-    }
-    protected function generateToken(User $user)
-    {
-        return JWTAuth::fromUser($user);
-    }
-
-    protected function sendToken(User $user)
-    {
-        $token = $this->generateToken($user);
-
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => Auth::factory()->getTTL() * 60
-        ]);
-    }
 }
-
