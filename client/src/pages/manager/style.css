@@ -16,3 +16,13 @@
   opacity: 0.8;
   cursor: default;
 }
+.msg-container {
+  width: 700px;
+}
+.msg-container button {
+  height: 30px;
+  text-align: center;
+}
+.msg-container p {
+  font-size: 18px;
+}
