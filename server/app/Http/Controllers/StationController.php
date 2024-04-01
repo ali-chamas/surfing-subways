@@ -34,7 +34,7 @@ class StationController extends Controller
     $station->location = $request->location;
     $station->name = $request->name;
     $station->image = $request->image;
-    $station->status = $request->status;
+    $station->status = 'available';
     $station->longitude = $request->longitude;
     $station->latitude = $request->latitude;
     $station->save();

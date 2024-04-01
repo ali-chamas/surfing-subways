@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../../common/styles/sidebar.css";
 import { useNavigate, useLocation } from "react-router-dom";
 const AdminSidebar = () => {
