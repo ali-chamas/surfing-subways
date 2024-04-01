@@ -29,6 +29,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('station_id');
             $table->unsignedBigInteger('facility_id');
+            $table->foreign('user_id')-> references('id')->on('users');
             $table->foreign('station_id')->references('id')->on('stations');
             $table->foreign('facility_id')->references('id')->on('facilities');
             $table->timestamps();
@@ -43,7 +44,7 @@ return new class extends Migration {
             $table->timestamps();
         });
     }
-
+    
     public function down(): void
     {
         Schema::dropIfExists('stations');

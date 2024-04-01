@@ -19,7 +19,6 @@ class ChatController extends Controller
     $receiverId = $request->input('receiver');
     $senderId = $request->input('sender');
 
-    // Find a user with the specified receiver ID
     $receiver = User::find($receiverId);
     $sender = User::find($senderId);
 
@@ -31,11 +30,10 @@ class ChatController extends Controller
         return response()->json(['error' => 'Sender not found'], 404);
     }
 
-    // Create and save the chat message
     $chat = new Chat();
     $chat->message = $request->input('message');
-    $chat->receiver_id = $receiverId;
-    $chat->sender_id = $senderId;
+    $chat->receiver = $receiverId;
+    $chat->sender= $senderId;
     $chat->save();
 
     return response()->json(['message' => 'Message sent successfully'], 201);

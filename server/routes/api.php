@@ -11,6 +11,7 @@ use App\Http\Controllers\CoinsRequestController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\StationFacilityController;
+use App\Http\Controllers\InvitationController;
 
 
 
@@ -72,9 +73,6 @@ Route::put('/coin-requests/{id}/process', [CoinsRequestController::class, 'proce
 
 //BranchInvitation Controllers
 
-use App\Http\Controllers\InvitationController;
-
-// Define routes for sending invitations and canceling invitations
 Route::post('invitations', [InvitationController::class, 'sendInvitation']);
 Route::delete('invitations/{id}', [InvitationController::class, 'cancelInvitation']);
 
