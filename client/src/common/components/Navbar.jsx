@@ -19,7 +19,7 @@ const Navbar = () => {
       <div className={`flex gap align-center desktop-menu`}>
         <a href="/stations">Stations</a>
 
-        <a href="/contact">Contact</a>
+        <a href="/#contact">Contact</a>
         <a href="/login" className="btn-style bg-secondary text-black">
           Login
         </a>

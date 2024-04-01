@@ -30,6 +30,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'location' => $request->location,
             'status' => 'active',
+            'coins'=>1000,
+            'profile_url'=>'https://www.iprcenter.gov/image-repository/blank-profile-picture.png/@@images/image.png',
             'role_id' => $defaultRoleId, // Assuming passenger role
         ]);
 
