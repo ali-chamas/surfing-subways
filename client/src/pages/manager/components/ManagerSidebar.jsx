@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../../common/styles/sidebar.css";
+
 import { useNavigate, useLocation } from "react-router-dom";
 const ManagerSidebar = () => {
   const navigate = useNavigate();

@@ -1,0 +1,18 @@
+.manager-section form {
+  width: 500px;
+  align-self: center;
+}
+
+.my-station form img {
+  width: 250px;
+}
+
+.img-container label {
+  font-size: 26px;
+}
+
+.save-btn:disabled {
+  background-color: rgba(63, 61, 61, 0.676);
+  opacity: 0.8;
+  cursor: default;
+}
