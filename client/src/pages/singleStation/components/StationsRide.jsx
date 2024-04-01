@@ -3,6 +3,7 @@ import "../stationRide.css";
 
 import RatingStars from "../../../common/components/RatingStars";
 import ReviewsPopup from "./ReviewsPopup";
+import BuyTicketPopup from "./BuyTicketPopup";
 
 const StationsRide = ({stationRide}) => {
 
@@ -10,49 +11,34 @@ const StationsRide = ({stationRide}) => {
     {
       id: 1,
     name: 'JANA HALABI',
-    desc: 'It was a great experience!',
+    desc: 'It was a great experience!It was a great experience!It was a great experience!It was a great experience!',
     rating: 3.5
   },
     {
       id: 2,
     name: 'JANA HALABI',
-    desc: 'It was a great experience!',
+    desc: 'It was a great experience!It was a great experience!It was a great experience!It was a great experience!',
     rating: 3.5
   },
     {
     id: 3,
     name: 'JANA HALABI',
-    desc: 'It was a great experience!',
-    rating: 3.5
-  },
-    {
-      id: 4,
-    name: 'JANA HALABI',
-    desc: 'It was a great experience!',
-    rating: 3.5
-  },
-    {
-      id: 5,
-    name: 'JANA HALABI',
-    desc: 'It was a great experience!',
-    rating: 3.5
-  },
-    {
-    id: 6,
-    name: 'JANA HALABI',
-    desc: 'It was a great experience!',
+    desc: 'It was a great experience!It was a great experience!It was a great experience!It was a great experience!',
     rating: 3.5
   },
   ]
     
-
   const [openReviewPopup, setOpenReviewPopup] = useState(false);
+  const [openBuyTicketPopup, setOpenBuyTicketPopup] = useState(false);
 
 
   return (
     <div className="flex row justify-between w-full bg-black stationRide-card">
 
       {openReviewPopup && <ReviewsPopup review={review} setOpenReviewPopup={setOpenReviewPopup}/>}
+
+      {openBuyTicketPopup && <BuyTicketPopup
+      setOpenBuyTicketPopup={setOpenBuyTicketPopup}/>}
       
       <div className="flex column gap stationRide-section1">
         <div className="flex row">
@@ -74,9 +60,11 @@ const StationsRide = ({stationRide}) => {
       </div>
       <div className="flex column center gap stationRide-section3">
         <button className="bg-default flex justify-between align-center bold text-white" onClick={()=>{
-          setOpenReviewPopup(true)
+          setOpenReviewPopup(true);
         }}>View Reviews <i className="icon-review"></i></button>
-        <button className="bg-default flex justify-between align-center bold text-primary">Buy a Ticket <i className="icon-ticket bg-secondary"></i></button>
+        <button className="bg-secondary flex justify-between align-center bold text-black" onClick={()=>{
+          setOpenBuyTicketPopup(true);
+        }}>Buy a Ticket <i className="icon-ticket bg-secondary"></i></button>
       </div>
     </div>
   )

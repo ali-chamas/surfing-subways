@@ -3,7 +3,7 @@ import RatingStars from "../../../common/components/RatingStars";
 
 const Reviews = ({review}) => {
   return (
-    <div className='flex row justify-between w-full'>
+    <div className='flex row justify-between w-full bg-black border-radius p'>
             <div>
               <h2>{review.name}</h2>
               <p>{review.desc}</p>
