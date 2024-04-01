@@ -67,6 +67,9 @@
 .gap {
   gap: 15px;
 }
+.small-gap {
+  gap: 5px;
+}
 
 .h1-size {
   font-size: 65px;
@@ -78,9 +81,6 @@
 
 .p {
   padding: 20px;
-}
-.small-gap {
-  gap: 5px;
 }
 .small-p {
   padding: 5px;
@@ -109,6 +109,10 @@
 
 .large-font {
   font-size: 35px;
+}
+
+.medium-font {
+  font-size: 19px;
 }
 
 .letter-spacing{

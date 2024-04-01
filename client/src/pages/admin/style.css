@@ -1,0 +1,75 @@
+.statistics-cards {
+    margin-top: 150px;
+    width: 90%;
+}
+
+.statistics-card {
+    width: 300px;
+    height: 140px;
+    text-align: center;
+    padding: 20px;
+}
+
+.statistics-card-child{
+    margin-top: 20px;
+}
+
+.icon-dashboard {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/humbleicons_dashboard.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon-stations {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/carbon_branch.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon-coin-requests {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/ph_coins.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.icon-money {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/flowbite_dollar-outline.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    background-color: #16f81242;
+}
+
+.icon-users {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/heroicons_users.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    background-color: #3666c65d;
+}
+
+.icon-rides {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    background-image: url(../../assets/icons/ic_outline-train.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    background-color: #ffe60666;
+}
