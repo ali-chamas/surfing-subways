@@ -18,6 +18,7 @@ import MyRides from "./pages/manager/components/MyRides";
 import MyReviews from "./pages/manager/components/MyReviews";
 import MyMessages from "./pages/manager/components/MyMessages";
 import AdminStations from "./pages/admin/components/AdminStations";
+import MyTickets from "./pages/manager/components/MyTickets";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -65,6 +66,10 @@ root.render(
         <Route
           path="/dashboard/manager/myMessages"
           element={<Manager children={<MyMessages />} />}
+        />
+        <Route
+          path="/dashboard/manager/myTickets"
+          element={<Manager children={<MyTickets />} />}
         />
       </Routes>
     </BrowserRouter>
