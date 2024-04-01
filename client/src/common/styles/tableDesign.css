@@ -4,5 +4,5 @@ th {
   padding: 8px 20px;
 }
 table {
-  width: 700px;
+  min-width: 700px;
 }

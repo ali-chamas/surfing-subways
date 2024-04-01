@@ -33,6 +33,72 @@ const MyRides = () => {
       arr_time: "20.00",
       price: 22,
     },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
+    {
+      arrival: "dsdsa",
+      deap_time: "10.00",
+      arr_time: "20.00",
+      price: 22,
+    },
   ];
 
   const myHeaders = [
@@ -105,7 +171,9 @@ const MyRides = () => {
                 <td>{ride.deap_time}</td>
                 <td>{ride.price}</td>
                 <td>{ride.arrival}</td>
-                <button className="btn-style">Edit</button>
+                <td>
+                  <button className="btn-style">Edit</button>
+                </td>
               </tr>
             ))}
           />

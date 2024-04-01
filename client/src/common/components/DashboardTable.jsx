@@ -3,7 +3,7 @@ import "../styles/tableDesign.css";
 const DashboardTable = ({ headers, body }) => {
   return (
     <div>
-      <table className="bg-primary">
+      <table>
         <tr className="bg-secondary">
           {headers.map((header, i) => (
             <th key={i}>{header}</th>
