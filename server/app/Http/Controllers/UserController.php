@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -8,29 +8,46 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function register(Request $request)
+    
+    public function index()
     {
-        // Validate incoming request data
+        $users = User::all();
+        return response()->json($users);
+    }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return response()->json($user);
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $user = User::findOrFail($id);
+
         $request->validate([
-            'username' => 'required',
-            'email' => 'required|email|unique:users',
+            'username' => 'required|unique:users,username,' . $id,
+            'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'required|min:6',
             'location' => 'required',
         ]);
 
-        // Create a new user
-        $user = User::create([
+        $user->update([
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'location' => $request->location,
-            'status' => 'active', // Set default status for new users
-            'role_id' => 1, // Assign role ID for passengers
         ]);
 
-        // Generate a token for the newly registered user
-        $token = $user->createToken('user_token')->plainTextToken;
-
-        return response()->json(['token' => $token, 'user' => $user], 201);
+        return response()->json($user);
     }
-}
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return response()->json(['message' => 'User deleted successfully']);
+    }
+} 
