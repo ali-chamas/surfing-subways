@@ -26,7 +26,6 @@ root.render(
       <Routes>
         {/*Passenger */}
         <Route path="/" element={<Layout children={<App />} />} />
-
         <Route path="/stations" element={<Layout children={<Stations />} />} />
         <Route
           path="/singleStation/:id"
@@ -35,37 +34,38 @@ root.render(
         <Route path="/login" element={<Layout children={<Login />} />} />
 
         {/*Admin */}
-
         <Route
           path="/dashboard/admin"
           element={<Admin children={<Dashboard />} />}
-        >
-          <Route
-            path="stations"
-            element={<Admin children={<AdminStations />} />}
-          />
+        />
 
-          <Route
-            path="coin-requests"
-            element={<Admin children={<CoinRequests />} />}
-          />
-        </Route>
+        <Route
+          path="/dashboard/admin/stations"
+          element={<Admin children={<AdminStations />} />}
+        />
+        <Route
+          path="/dashboard/admin/coin-requests"
+          element={<Admin children={<CoinRequests />} />}
+        />
 
         {/*Manager */}
         <Route
           path="/dashboard/manager"
           element={<Manager children={<MyStation />} />}
-        >
-          <Route path="myRides" element={<Manager children={<MyRides />} />} />
-          <Route
-            path="myReviews"
-            element={<Manager children={<MyReviews />} />}
-          />
-          <Route
-            path="myMessages"
-            element={<Manager children={<MyMessages />} />}
-          />
-        </Route>
+        />
+
+        <Route
+          path="/dashboard/manager/myRides"
+          element={<Manager children={<MyRides />} />}
+        />
+        <Route
+          path="/dashboard/manager/myReviews"
+          element={<Manager children={<MyReviews />} />}
+        />
+        <Route
+          path="/dashboard/manager/myMessages"
+          element={<Manager children={<MyMessages />} />}
+        />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
