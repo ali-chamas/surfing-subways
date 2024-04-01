@@ -10,9 +10,11 @@ const StationsCard = ({ station }) => {
     >
       <div className="station-card-info flex">
         <div className=" flex justify-between p w-full align-center">
-          <div className="flex column gap">
-            <h3>{station.title}</h3>
-            <RatingStars rating={station.rating} />
+          <div className="flex column small-gap">
+            <div className="flex center gap">
+              <h3>{station.title}</h3>
+              <RatingStars rating={station.rating} />
+            </div>
             <p>{station.location}</p>
             <div className="flex small-gap">
               {station.facilitites.map((f, i) => (
