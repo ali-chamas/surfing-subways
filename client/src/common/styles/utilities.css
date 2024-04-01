@@ -35,7 +35,9 @@
 .big-gap {
   gap: 25px;
 }
-
+.self-center {
+  align-self: center;
+}
 .w-full {
   width: 100%;
 }
@@ -90,12 +92,12 @@
   border-radius: 10px;
 }
 
-.text-mg-right{
+.text-mg-right {
   margin-right: 5px;
   margin-left: 5px;
 }
 
-.mg-top{
+.mg-top {
   margin-top: 5px;
 }
 
@@ -126,7 +128,6 @@
   font-size: 16px;
   outline: none;
 }
-
 
 .input {
   background-color: rgb(49, 45, 45);
@@ -191,7 +192,6 @@ input[type="number"]::-webkit-outer-spin-button {
   color: white;
 }
 
-
 .popup-child textarea {
   padding: 10px;
   border-radius: 7px;
@@ -211,7 +211,7 @@ input[type="number"]::-webkit-outer-spin-button {
   top: 0;
 }
 
-.popup-child .exit{
+.popup-child .exit {
   position: absolute;
   top: 0;
   right: 0;
@@ -220,7 +220,7 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 40px;
 }
 
-.popup-child .add{
+.popup-child .add {
   position: absolute;
   top: 6%;
   right: 0;
@@ -230,18 +230,18 @@ input[type="number"]::-webkit-outer-spin-button {
   border-radius: 10px;
 }
 
-.popup-child .add:hover{
+.popup-child .add:hover {
   opacity: 70%;
 }
 
-.popup-child .add-rev{
+.popup-child .add-rev {
   text-align: center;
   font-size: 15px;
   width: 100px;
   height: auto;
 }
 
-.popup-child .add-rev:hover{
+.popup-child .add-rev:hover {
   opacity: 70%;
 }
 
@@ -260,8 +260,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-optical-sizing: auto;
   font-weight: 200;
   font-style: normal;
-  font-variation-settings:
-    "slnt" 0;
+  font-variation-settings: "slnt" 0;
 }
 
 @media (max-width: 768px) {
@@ -283,7 +282,3 @@ input[type="number"]::-webkit-outer-spin-button {
     max-width: 260px;
   }
 }
-
-
-
-
