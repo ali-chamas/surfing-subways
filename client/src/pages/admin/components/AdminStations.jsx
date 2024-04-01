@@ -1,6 +1,9 @@
 import React from "react";
+import DashboardTable from "../../../common/components/DashboardTable";
 
 const AdminStations = () => {
+
+  
 
   return <div className="flex column align-center w-full">
     
@@ -12,12 +15,7 @@ const AdminStations = () => {
           <input type="email" placeholder="email" required/>
           <input type="password" placeholder="password" required/>
           <input type="text" placeholder="location" required/>
-          {/* <div className="flex justify-around align-center add-card-child">
-            <h4 className="text-primary">Coordinates:</h4>
-            <input type="number" placeholder="longitude" required/>
-            <input type="number" placeholder="latitude" required/>
-          </div> */}
-          <button className="flex center text-black bg-secondary">Add</button>
+          <button className="flex center text-black bg-secondary bold">Add</button>
       </div>
 
       <div className="flex column align-center gap add-card bg-black border-radius">
@@ -40,11 +38,11 @@ const AdminStations = () => {
           </div>
           </div>
           
-          <button className="flex center text-black bg-secondary">Add</button>
+          <button className="flex center text-black bg-secondary bold">Add</button>
       </div>
-
-      
     </div>
+
+    
     
   </div>;
 };

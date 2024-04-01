@@ -1,6 +1,43 @@
 import React from "react";
+import DashboardTable from "../../../common/components/DashboardTable";
 
 const Dashboard = () => {
+
+  const users = [
+    {
+      id:1,
+      name:'test',
+      email:'test@gmail.com',
+      location:'Beirut'
+    },
+    {
+      id:2,
+      name:'test',
+      email:'test@gmail.com',
+      location:'Beirut'
+    },
+    {
+      id:3,
+      name:'test',
+      email:'test@gmail.com',
+      location:'Beirut'
+    },
+    {
+      id:4,
+      name:'test',
+      email:'test@gmail.com',
+      location:'Beirut'
+    },
+  ]
+
+  const myHeaders = [
+    "ID",
+    "Name",
+    "Email",
+    "Locaiton",
+    "action",
+  ];
+
   return <div className="flex column align-center w-full">
     
     <div className="flex justify-evenly statistics-cards">
@@ -25,8 +62,25 @@ const Dashboard = () => {
           <h3 className=' letter-spacing'>50,000</h3>
         </div>
       </div>
-      
     </div>
+
+    <div className="mg-table p gap flex column bg-black border-radius">
+          <h2>Users</h2>
+          <DashboardTable
+            headers={myHeaders}
+            body={users.map((user, i) => (
+              <tr>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.location}</td>
+                <td>
+                  <button className="btn-style bg-danger text-white">Delete</button>
+                </td>
+              </tr>
+            ))}
+          />
+        </div>
     
   </div>;
 };
