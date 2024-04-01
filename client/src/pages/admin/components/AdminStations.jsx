@@ -3,7 +3,41 @@ import DashboardTable from "../../../common/components/DashboardTable";
 
 const AdminStations = () => {
 
-  
+  const branches = [
+    {
+      id:1,
+      name:'test',
+      email:'test@gmail.com',
+      station:'Beirut'
+    },
+    {
+      id:2,
+      name:'test',
+      email:'test@gmail.com',
+      station:'Beirut'
+    },
+    {
+      id:3,
+      name:'test',
+      email:'test@gmail.com',
+      station:'Beirut'
+    },
+    {
+      id:4,
+      name:'test',
+      email:'test@gmail.com',
+      station:'Beirut'
+    },
+    
+  ]
+
+  const myHeaders = [
+    "ID",
+    "Name",
+    "Email",
+    "Station",
+    "action",
+  ];
 
   return <div className="flex column align-center w-full">
     
@@ -42,7 +76,23 @@ const AdminStations = () => {
       </div>
     </div>
 
-    
+    <div className="mg-table p gap flex column bg-black border-radius">
+          <h2>Users</h2>
+          <DashboardTable
+            headers={myHeaders}
+            body={branches.map((branch, i) => (
+              <tr>
+                <td>{branch.id}</td>
+                <td>{branch.name}</td>
+                <td>{branch.email}</td>
+                <td>{branch.station}</td>
+                <td>
+                  <button className="btn-style bg-danger text-white">Delete</button>
+                </td>
+              </tr>
+            ))}
+          />
+        </div>
     
   </div>;
 };
