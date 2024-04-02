@@ -16,12 +16,13 @@ class StationController extends Controller
     public function show($id)
     {
         $station = Station::findOrFail($id);
-        return response()->json($station);
+        return response()->json($station,);
     }
 
     public function store(Request $request)
 {
     $request->validate([
+        'user_id' => 'required|integer',
         'location' => 'required|string',
         'name' => 'required|string',
         'image' => 'required|string',
@@ -31,10 +32,11 @@ class StationController extends Controller
     ]);
     
     $station = new Station();
+    $station->user_id = $request->user_id;
     $station->location = $request->location;
     $station->name = $request->name;
     $station->image = $request->image;
-    $station->status = 'available';
+    $station->status = $request->status; 
     $station->longitude = $request->longitude;
     $station->latitude = $request->latitude;
     $station->save();
@@ -47,6 +49,7 @@ class StationController extends Controller
         $station = Station::findOrFail($id);
 
         $request->validate([
+            'user_id' => 'required|integer',
             'location' => 'string',
             'name' => 'string',
             'image' => 'string',

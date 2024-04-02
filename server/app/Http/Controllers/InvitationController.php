@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Invitation;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\InvitationEmail;
@@ -13,28 +13,32 @@ class InvitationController extends Controller
     public function sendInvitation(Request $request)
     {
         $request->validate([
-            'from' => 'required|exists:users,id',
-            'to' => 'required|exists:users,id',
+            'email' => 'required|email',
+            'station_name' => 'required|string',
+            'message' => 'required|string',
         ]);
 
-        $invitation = Invitation::create([
-            'from' => $request->from,
-            'to' => $request->to,
-        ]);
+        $user = auth()->user();
 
-        $sender = User::findOrFail($request->from);
-        $receiver = User::findOrFail($request->to);
+        if ($user) {
 
-        Mail::to($receiver->email)->send(new InvitationEmail($sender, $receiver));
+            $senderName = $user->name;
+        } else {
+            $senderName = 'Anonymous';
+        }
 
-        return response()->json(['message' => 'Invitation sent successfully', 'invitation' => $invitation], 200);
+        $admin = User::where('role_id', 1)->first();
+
+        if ($admin) {
+            return view('emails.hi', [
+                'sender' => (object) ['name' => $senderName],
+                'stationName' => $request->station_name,
+                'message' => $request->message,
+            ]);
+        } else {
+            return response()->json(['message' => 'Admin not found'], 404);
+        }
     }
 
-    public function cancelInvitation(Request $request, $id)
-    {
-        $invitation = Invitation::findOrFail($id);
-        $invitation->delete();
 
-        return response()->json(['message' => 'Invitation canceled successfully'], 200);
-    }
 }

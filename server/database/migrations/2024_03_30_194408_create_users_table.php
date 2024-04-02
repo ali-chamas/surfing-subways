@@ -11,12 +11,12 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->default('');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('coins')->default(1000);
             $table->string('location');
-            $table->string('status')->nullable();
+            $table->string('status')->default('active');
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->string('profile_url')->nullable();

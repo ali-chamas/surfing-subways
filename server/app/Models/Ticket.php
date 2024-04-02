@@ -9,10 +9,13 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['paid_amount', 'user_id', 'type'];
+    protected $fillable = ['ride_id', 'date', 'status'];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
+    public function ride(){
+        return $this->belongsToMany(Ride::class);
+    }
+
+    public function booking(){
+        return $this->belongsTo(Booking::class);
     }
 }

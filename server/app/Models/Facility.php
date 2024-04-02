@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Facility extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','station_id'];
 
     public function stations()
     {
-        return $this->belongsToMany(Station::class, 'station_facilities');
+        return $this->belongsTo(Station::class, 'facilities');
     }
 }

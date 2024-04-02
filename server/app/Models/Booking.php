@@ -8,20 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
-    protected $fillable = ['ride_id', 'user_id', 'ticket_id', 'status'];
-
-    public function ride()
-    {
-        return $this->belongsTo(Ride::class);
-    }
+    protected $fillable = ['ride_id', 'user_id', 'ticket_id', 'type'];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function ticket()
     {
-        return $this->belongsTo(Ticket::class);
+        return $this->belongsToMany(Ticket::class);
     }
 }

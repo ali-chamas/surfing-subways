@@ -30,7 +30,8 @@ class PassengerActionController extends Controller
 
             if ($requestData['type'] === 'ticket') {
             } elseif ($requestData['type'] === 'pass') {
-            } else {
+            } else 
+            {
                 return response()->json(['message' => 'Invalid ticket/pass type'], 400);
             }
 
@@ -40,7 +41,6 @@ class PassengerActionController extends Controller
             return response()->json(['message' => 'Failed to purchase ticket/pass', 'error' => $e->getMessage()], 500);
         }
     }
-
 
     public function leaveReview(Request $request)
     {

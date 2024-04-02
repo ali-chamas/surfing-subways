@@ -11,6 +11,7 @@ use App\Http\Controllers\CoinsRequestController;
 use App\Http\Controllers\StationController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\StationFacilityController;
+use App\Http\Controllers\InvitationController;
 
 
 
@@ -22,6 +23,15 @@ Route::get('/user', function (Request $request) {
 
 //user controllers
 
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+
+});
+
+
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 Route::get('/users/{id}', [UserController::class, 'show']);
@@ -31,9 +41,9 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 //auth Controllers
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout']);
+// Route::post('/login', [AuthController::class, 'login']);
+// Route::post('/register', [AuthController::class, 'register']);
+// Route::post('/logout', [AuthController::class, 'logout']);
 
 
 //role Controllers
@@ -55,6 +65,7 @@ Route::delete('/rides/{id}', [RideController::class, 'destroy']);
 
 
 //Chats Controllers
+
 Route::post('/chats', [ChatController::class, 'sendMessage']);
 Route::get('/chats', [ChatController::class, 'getChats']);
 
@@ -72,9 +83,6 @@ Route::put('/coin-requests/{id}/process', [CoinsRequestController::class, 'proce
 
 //BranchInvitation Controllers
 
-use App\Http\Controllers\InvitationController;
-
-// Define routes for sending invitations and canceling invitations
 Route::post('invitations', [InvitationController::class, 'sendInvitation']);
 Route::delete('invitations/{id}', [InvitationController::class, 'cancelInvitation']);
 
