@@ -33,6 +33,17 @@ return new class extends Migration
             $table->foreign('ride_id')->references('id')->on('rides');
             $table->timestamps();
         });
+
+        Schema::create('tickets', function (Blueprint $table) {
+            $table->id();
+            $table->integer('paid_amount');
+            $table->unsignedBigInteger('user_id');
+            $table->string('type');
+            $table->unsignedBigInteger('ride_id');
+            $table->foreign('ride_id')->references('id')->on('rides');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->timestamps();
+        });
     }
 
     public function down(): void

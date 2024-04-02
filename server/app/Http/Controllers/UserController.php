@@ -27,10 +27,13 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $request->validate([
-            'username' => 'required|unique:users,username,' . $id,
-            'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'required|min:6',
-            'location' => 'required',
+            $request->validate([
+                'username' => 'unique:users,username,' . $id,
+                'email' => 'email|unique:users,email,' . $id,
+                'password' => 'nullable|min:6',
+                'location' => 'string',
+                'status' => 'string',
+            ])
         ]);
 
         $user->update([
@@ -38,6 +41,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'location' => $request->location,
+            'status' => $request->status
         ]);
 
         return response()->json($user);

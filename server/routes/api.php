@@ -35,7 +35,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/users', [UserController::class, 'store']);
 Route::get('/users/{id}', [UserController::class, 'show']);
-Route::put('/users/{id}', [UserController::class, 'update']);
+Route::post('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 
@@ -76,9 +76,9 @@ Route::get('/chats', [ChatController::class, 'getChats']);
 Route::post('/coin-requests', [CoinsRequestController::class, 'store']);
 Route::get('/coin-requests', [CoinsRequestController::class, 'index']);
 Route::get('/coin-requests/{id}', [CoinsRequestController::class, 'show']);
-Route::put('/coin-requests/{id}', [CoinsRequestController::class, 'update']);
+Route::post('/coin-requests/{id}', [CoinsRequestController::class, 'update']);
 Route::delete('/coin-requests/{id}', [CoinsRequestController::class, 'destroy']);
-Route::put('/coin-requests/{id}/process', [CoinsRequestController::class, 'processRequest']);
+Route::post('/coin-requests/{id}/process', [CoinsRequestController::class, 'processRequest']);
 
 
 //BranchInvitation Controllers
@@ -92,23 +92,13 @@ Route::delete('invitations/{id}', [InvitationController::class, 'cancelInvitatio
 Route::get('/stations', [StationController::class, 'index']);
 Route::get('/stations/{id}', [StationController::class, 'show']);
 Route::post('/stations', [StationController::class, 'store']);
-Route::put('/stations/{id}', [StationController::class, 'update']);
+Route::post('/stations/{id}', [StationController::class, 'update']);
 Route::delete('/stations/{id}', [StationController::class, 'destroy']);
-
-
-//StationFacility Controllers
-
-Route::get('/station_facilities', [StationFacilityController::class, 'index']);
-Route::get('/station_facilities/{id}', [StationFacilityController::class, 'show']);
-Route::post('/station_facilities', [StationFacilityController::class, 'store']);
-Route::put('/station_facilities/{id}', [StationFacilityController::class, 'update']);
-Route::delete('/station_facilities/{id}', [StationFacilityController::class, 'destroy']);
-
 
 //facility Controllers
 
 Route::get('/facilities', [FacilityController::class, 'index']);
 Route::get('/facilities/{id}', [FacilityController::class, 'show']);
 Route::post('/facilities', [FacilityController::class, 'store']);
-Route::put('/facilities/{id}', [FacilityController::class, 'update']);
+Route::post('/facilities/{id}', [FacilityController::class, 'update']);
 Route::delete('/facilities/{id}', [FacilityController::class, 'destroy']);
