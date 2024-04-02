@@ -16,35 +16,23 @@ return new class extends Migration {
             $table->string('status');
             $table->double('longitude');
             $table->double('latitude');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->dateTime('operating_hour_from');
+            $table->dateTime('operating_hour_to');
             $table->timestamps();
         });
 
         Schema::create('facilities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->timestamps();
-        });
-
-        Schema::create('station_facilities', function (Blueprint $table) {
-            $table->id();
             $table->unsignedBigInteger('station_id');
-            $table->unsignedBigInteger('facility_id');
-            $table->foreign('user_id')-> references('id')->on('users');
-            $table->foreign('station_id')->references('id')->on('stations');
-            $table->foreign('facility_id')->references('id')->on('facilities');
-            $table->timestamps();
-        });
-
-        Schema::create('station_operating_hours', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('station_id');
-            $table->dateTime('from');
-            $table->dateTime('to');
             $table->foreign('station_id')->references('id')->on('stations');
             $table->timestamps();
         });
+
     }
-    
+
     public function down(): void
     {
         Schema::dropIfExists('stations');

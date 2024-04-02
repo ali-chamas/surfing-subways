@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('password');
             $table->integer('coins')->default(1000);
             $table->string('location');
-            $table->string('status')->nullable();
+            $table->string('status')->default('active');
             $table->unsignedBigInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->string('profile_url')->nullable();
