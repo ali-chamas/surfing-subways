@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('location');
             $table->string('name');
             $table->string('image');
-            $table->string('status');
+            $table->string('status')->default('active');
             $table->double('longitude');
             $table->double('latitude');
             $table->unsignedBigInteger('user_id');
