@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('arrival_station_id');
             $table->foreign('departure_station_id')->references('id')->on('stations');
             $table->foreign('arrival_station_id')->references('id')->on('stations');
+            $table->unsignedTinyInteger('seats')->default(40)->nullable(false)->unsigned();
             $table->timestamps();
         });
 
