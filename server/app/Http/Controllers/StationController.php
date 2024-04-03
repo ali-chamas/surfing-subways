@@ -26,7 +26,6 @@ class StationController extends Controller
         'location' => 'required|string',
         'name' => 'required|string',
         'image' => 'required|string',
-        // 'status' => 'required|string',
         'longitude' => 'required|numeric',
         'latitude' => 'required|numeric',
         'operating_hour_from' => [
@@ -47,7 +46,6 @@ class StationController extends Controller
     $station->location = $request->location;
     $station->name = $request->name;
     $station->image = $request->image;
-    // $station->status = $request->status; 
     $station->longitude = $request->longitude;
     $station->latitude = $request->latitude;
     $station->operating_hour_from = $request->operating_hour_from;

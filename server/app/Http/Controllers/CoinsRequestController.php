@@ -28,10 +28,9 @@ class CoinsRequestController extends Controller
         ]);
 
         $defaultApprovedBy = 1;
-        // $userId = 1; 
 
         $coinRequest = CoinRequest::create([
-            'user_id' => $request->user_id, // Assuming you're using authentication to get the user ID
+            'user_id' => $request->user_id,
             'amount' => $request->amount,
             'status' => 'Pending',
             'approved_by' => $defaultApprovedBy,
@@ -58,14 +57,13 @@ class CoinsRequestController extends Controller
     }
 
     if ($request->status === 'Accepted') {
-        // Assuming you have a User model with a 'coins' attribute
         $user = User::findOrFail($coinRequest->user_id);
         $user->coins += $coinRequest->amount;
         $user->save();
     }
 
         $coinRequest->status = $request->status;
-        $coinRequest->approved_by = Auth::id();
+        $coinRequest->approved_by = 1;
         $coinRequest->save();
 
     return response()->json(['message' => 'Coin request processed successfully'], 200);
@@ -81,14 +79,4 @@ class CoinsRequestController extends Controller
         return response()->json(['message' => 'Coin request deleted successfully'], 200);
     }
 
-    // public function processRequest(Request $request, $id)
-    // {
-    //     $coinRequest = CoinRequest::findOrFail($id);
-
-    //     $coinRequest->status = $request->status;
-    //     $coinRequest->approved_by = Auth::id();
-    //     $coinRequest->save();
-
-    //     return response()->json(['message' => 'Coin request processed successfully'], 200);
-    // }
 }

@@ -13,5 +13,14 @@ class Station extends Model
         return $this->belongsToMany(Facility::class, 'stations');
     }
 
+    public function rides()
+    {
+        return $this->belongsToMany(Ride::class, 'rides');
+    }
+    
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'users');
+    }
     
 }
