@@ -18,8 +18,8 @@ return new class extends Migration {
             $table->double('latitude');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->dateTime('operating_hour_from');
-            $table->dateTime('operating_hour_to');
+            $table->time('operating_hour_from');
+            $table->time('operating_hour_to');
             $table->timestamps();
         });
 

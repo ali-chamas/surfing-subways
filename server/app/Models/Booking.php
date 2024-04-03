@@ -12,11 +12,11 @@ class Booking extends Model
 
     public function user()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function ticket()
     {
-        return $this->belongsToMany(Ticket::class);
+        return $this->belongsTo(Ticket::class);
     }
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('arrival_station_id');
             $table->foreign('departure_station_id')->references('id')->on('stations');
             $table->foreign('arrival_station_id')->references('id')->on('stations');
+            $table->unsignedTinyInteger('seats')->default(40)->nullable(false)->unsigned();
             $table->timestamps();
         });
 
@@ -36,9 +37,8 @@ return new class extends Migration
 
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->integer('paid_amount');
-            $table->unsignedBigInteger('user_id');
             $table->string('type');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('ride_id');
             $table->foreign('ride_id')->references('id')->on('rides');
             $table->foreign('user_id')->references('id')->on('users');
