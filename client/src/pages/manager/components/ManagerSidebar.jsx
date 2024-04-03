@@ -30,6 +30,16 @@ const ManagerSidebar = () => {
           My rides
         </button>
         <button
+          onClick={() => navigate("/dashboard/manager/myTickets")}
+          className={`btn-style w-full p ${
+            pathname == "/dashboard/manager/myTickets"
+              ? "bg-secondary text-black"
+              : "bg-primary text-white"
+          }`}
+        >
+          My tickets
+        </button>
+        <button
           onClick={() => navigate("/dashboard/manager/myReviews")}
           className={`btn-style w-full p ${
             pathname == "/dashboard/manager/myReviews"
