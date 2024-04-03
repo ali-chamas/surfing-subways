@@ -41,10 +41,13 @@ Route::post('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 
-//Booking Controllers
+//PassengerBooking Controllers
 
 Route::post('users/{userId}/rides/{rideId}/purchase', [PassengerBookingController::class, 'purchaseTicket']);
-Route::get('bookings', [PassengerBookingController::class, 'getAllBookings']);
+
+
+//Ticket Controllers
+
 
 
 //role Controllers
