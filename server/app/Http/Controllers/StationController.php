@@ -28,6 +28,7 @@ class StationController extends Controller
         'image' => 'required|string',
         'longitude' => 'required|numeric',
         'latitude' => 'required|numeric',
+        'rating' => 'numeric',
         'operating_hour_from' => [
             'required',
             'string',
@@ -48,6 +49,7 @@ class StationController extends Controller
     $station->image = $request->image;
     $station->longitude = $request->longitude;
     $station->latitude = $request->latitude;
+    $station->rating = 0;
     $station->operating_hour_from = $request->operating_hour_from;
     $station->operating_hour_to = $request->operating_hour_to;
     $station->save();

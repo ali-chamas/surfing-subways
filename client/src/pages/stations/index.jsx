@@ -1,38 +1,82 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import { TbCoinFilled } from "react-icons/tb";
-import { stations } from "../home/components/Recommendations";
+
 import StationsCard from "../../common/components/StationsCard";
 import StationsMap from "./components/StationsMap";
+import { sendRequest } from "../../tools/request/request";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContent";
 
 const Stations = () => {
+  const [stations, setStations] = useState([]);
+  const [filteredStations, setFilteredStations] = useState([]);
+  const { user } = useContext(UserContext);
+
+  const getStations = async () => {
+    const res = await sendRequest("GET", "/stations");
+    const data = await res.data;
+    setStations(data);
+    setFilteredStations(data);
+    console.log(data);
+  };
+
+  useEffect(() => {
+    getStations();
+  }, []);
+
+  const handleSearch = (e) => {
+    const searchValue = e.target.value;
+    searchValue == ""
+      ? setFilteredStations(stations)
+      : setFilteredStations(
+          stations.filter((s) => s.name.toLowerCase().includes(searchValue))
+        );
+    console.log(e.target.value);
+  };
+
+  const handleFilter = (e) => {
+    const filterValue = e.target.value;
+    filterValue == ""
+      ? setFilteredStations(stations)
+      : setFilteredStations(stations.sort((a, b) => a.rating > b.rating));
+  };
+
   return (
     <section className="stations-section flex column  align-center">
       <div className="map-wrap">
-        {/* <StationsMap stations={stations} /> */}
+        <StationsMap stations={stations} />
       </div>
 
       <div className="flex justify-between bg-primary small-gap p border-radius w-full">
         <div className="flex gap">
           <input
             type="search"
-            className="text-black border-radius"
+            className="input"
             placeholder="Search "
+            onChange={(e) => {
+              handleSearch(e);
+            }}
           />
 
-          <select className="w-full bg-secondary border-radius">
+          <select
+            className="w-full bg-secondary border-radius"
+            onChange={(e) => handleFilter(e)}
+          >
             <option value="top rated">high rated</option>
             <option value="low rated">low rated</option>
           </select>
         </div>
         <p className="bg-secondary text-black border-radius flex align-center small-gap">
-          50 <TbCoinFilled />
+          {user.coins} <TbCoinFilled />
         </p>
       </div>
 
-      {stations.map((station, i) => (
-        <StationsCard station={station} key={i} />
-      ))}
+      {filteredStations.length > 0
+        ? filteredStations.map((station, i) => (
+            <StationsCard station={station} key={i} />
+          ))
+        : "No stations found"}
     </section>
   );
 };

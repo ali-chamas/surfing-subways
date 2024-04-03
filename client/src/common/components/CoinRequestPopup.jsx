@@ -27,6 +27,7 @@ const CoinRequestPopup = ({ user, setOpen }) => {
           placeholder="amount"
           className="input"
           onChange={(e) => setAmount(e.target.value)}
+          value={amount}
         />
         <button onClick={handleSend} className="bg-secondary btn-style">
           Send

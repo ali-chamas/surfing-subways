@@ -5,7 +5,7 @@ import { UserContext } from "../context/userContent";
 const PrivateRoutes = () => {
   const { user } = useContext(UserContext);
 
-  return user.role_id == 1 ? <Outlet /> : <Navigate to="/login" />;
+  return user.role_id == 1 ? <Outlet /> : <Navigate to="/" />;
 };
 
 export default PrivateRoutes;

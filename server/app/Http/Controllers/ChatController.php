@@ -39,5 +39,19 @@ class ChatController extends Controller
     return response()->json(['message' => 'Message sent successfully'], 201);
 }
 
+public function getChats(Request $request) {
+    $chats = Chat::all();
+    return response()->json($chats,200);
+}
+
+public function getChat(Request $request) {
+    $userId = $request->input('user_id'); 
+
+$messages = Chat::where('receiver', $userId)
+    ->orWhere('sender', $userId)
+    ->get();
+
+    return response()->json($messages,200);
+}
 
 }

@@ -68,6 +68,7 @@ Route::delete('/rides/{id}', [RideController::class, 'destroy']);
 
 Route::post('/chats', [ChatController::class, 'sendMessage']);
 Route::get('/chats', [ChatController::class, 'getChats']);
+Route::post('/getChat', [ChatController::class, 'getChat']);
 
 
 

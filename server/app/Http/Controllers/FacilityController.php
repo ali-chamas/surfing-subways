@@ -13,16 +13,20 @@ class FacilityController extends Controller
         return response()->json($facilities);
     }
 
-    public function show($id)
+    public function show($stationId)
     {
-        $facility = Facility::findOrFail($id);
-        return response()->json($facility);
+       
+        
+        $facilities = Facility::where('station_id', $stationId)->get();
+
+        return response()->json($facilities);
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|unique:facilities,name',
+            'station_id'=>'required|integer'
         ]);
 
         $facility = Facility::create($request->all());
@@ -36,9 +40,11 @@ class FacilityController extends Controller
 
         $request->validate([
             'name' => 'required|string|unique:facilities,name,',
+            
         ]);
 
         $facility->update($request->all());
+        
 
         return response()->json(['message' => 'Facility updated successfully', 'facility' => $facility], 200);
     }

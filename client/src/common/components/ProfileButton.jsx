@@ -4,12 +4,20 @@ import { useNavigate } from "react-router-dom";
 import "../styles/profile.css";
 import { TbCoinFilled } from "react-icons/tb";
 import CoinRequestPopup from "./CoinRequestPopup";
+import { sendRequest } from "../../tools/request/request";
+import axios from "axios";
 const ProfileButton = () => {
-  const { logout, user } = useContext(UserContext);
+  const { logout, user, token } = useContext(UserContext);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [openCoins, setOpenCoins] = useState(false);
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const res = await axios({
+      method: "POST",
+      url: "http://localhost:8000/api/logout",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log(res);
     logout();
     navigate("/login");
   };
