@@ -7,9 +7,9 @@ use App\Models\Ride;
 
 class RideController extends Controller
 {
-    public function index()
+    public function index($station_id)
     {
-        $rides = Ride::all();
+        $rides = Ride::where('departure_station_id', $station_id)->get();
         return response()->json($rides);
     }
 

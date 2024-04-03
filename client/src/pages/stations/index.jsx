@@ -11,7 +11,7 @@ import { StationContext } from "../../context/stationsContext";
 
 const Stations = () => {
   const { stations } = useContext(StationContext);
-  const [filteredStations, setFilteredStations] = useState(stations);
+  const [filteredStations, setFilteredStations] = useState([]);
   const { user } = useContext(UserContext);
 
   const handleSearch = (e) => {
@@ -30,6 +30,9 @@ const Stations = () => {
       ? setFilteredStations(stations)
       : setFilteredStations(stations.sort((a, b) => a.rating > b.rating));
   };
+  useEffect(() => {
+    setFilteredStations(stations);
+  }, [stations.length]);
 
   return (
     <section className="stations-section flex column  align-center">
@@ -56,9 +59,11 @@ const Stations = () => {
             <option value="low rated">low rated</option>
           </select>
         </div>
-        <p className="bg-secondary text-black border-radius flex align-center small-gap">
-          {user.coins} <TbCoinFilled />
-        </p>
+        {user && (
+          <p className="bg-secondary text-black border-radius flex align-center small-gap">
+            {user.coins} <TbCoinFilled />
+          </p>
+        )}
       </div>
 
       {filteredStations.length > 0

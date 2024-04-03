@@ -1,15 +1,18 @@
-import React from 'react'
+import React from "react";
 
-const Hero2 = () => {
+const Hero2 = ({ station }) => {
   return (
-    <section className="hero2-section">
+    <section
+      style={{ backgroundImage: `url(${station.image})` }}
+      className="hero2-section"
+    >
       <div>
         <div className="flex column gap align-center p">
-          <h1 className="special-font h1-size">Aazmi Station</h1>
+          <h1 className="special-font h1-size">{station.name}</h1>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero2
+export default Hero2;
