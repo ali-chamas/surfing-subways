@@ -5,17 +5,8 @@ import { sendRequest } from "../../../tools/request/request";
 import { UserContext } from "../../../context/userContext";
 
 const Recommendations = () => {
-  const { stations, setStations } = useContext(StationContext);
+  const { stations } = useContext(StationContext);
   const { user } = useContext(UserContext);
-  const getStations = async () => {
-    const res = await sendRequest("GET", "/stations");
-    const data = await res.data;
-    setStations(data);
-  };
-
-  useEffect(() => {
-    getStations();
-  }, []);
 
   const checkRecommendations = (loc) => {
     const stationCountry = loc.split(",")[0];
@@ -31,11 +22,16 @@ const Recommendations = () => {
     >
       <h2>Nearest Stations to you</h2>
       <div className="stations-container flex column gap w-full">
-        {stations.map(
-          (station, i) =>
-            checkRecommendations(station.location) &&
-            i <= 3 && <StationsCard station={station} key={i} />
-        )}
+        {user
+          ? stations.map(
+              (station, i) =>
+                checkRecommendations(station.location) &&
+                i <= 3 && <StationsCard station={station} key={i} />
+            )
+          : stations.map(
+              (station, i) =>
+                i <= 3 && <StationsCard station={station} key={i} />
+            )}
       </div>
     </section>
   );

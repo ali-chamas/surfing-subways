@@ -58,7 +58,7 @@ Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
 
 //rides Controllers
 
-Route::get('/rides', [RideController::class, 'index']);
+Route::get('/stationRides/{station_id}', [RideController::class, 'index']);
 Route::get('/rides/{id}', [RideController::class, 'show']);
 Route::post('/rides', [RideController::class, 'store']);
 Route::post('/rides/{id}', [RideController::class, 'update']);
