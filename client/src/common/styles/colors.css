@@ -14,10 +14,10 @@
 .bg-blue {
   background-color: rgb(47, 94, 211);
 }
-.bg-black{
+.bg-black {
   background-color: black;
 }
-.bg-default{
+.bg-default {
   background-color: #292929;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .text-green {
-  color: #00FF19;
+  color: #00ff19;
 }
 
 .border-blue {
@@ -43,5 +43,5 @@
   background-color: rgb(172, 0, 0);
 }
 .text-danger {
-  color: rgb(172, 0, 0);
+  color: rgb(255, 51, 51);
 }

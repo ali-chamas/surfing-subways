@@ -33,7 +33,7 @@ class CoinsRequestController extends Controller
         $coinRequest = CoinRequest::create([
             'user_id' => $request->user_id, // Assuming you're using authentication to get the user ID
             'amount' => $request->amount,
-            'status' => 'Pending',
+            'status' => 'pending',
             'approved_by' => $defaultApprovedBy,
         ]);
 

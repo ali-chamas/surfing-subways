@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import "../styles/navbar.css";
+import { UserContext } from "../../context/userContent";
+import ProfileButton from "./ProfileButton";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const { token } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen((o) => !o);
@@ -11,30 +16,49 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex w-full align-center justify-between navbar p bg-blur">
-      <a href="/" className="large-font special-font">
+    <nav className="flex w-full align-center justify-between navbar  bg-blur">
+      <p
+        onClick={() => navigate("/")}
+        className="large-font special-font cursor-pointer"
+      >
         Surfing Subways
-      </a>
+      </p>
 
-      <div className={`flex gap align-center desktop-menu`}>
-        <a href="/stations">Stations</a>
+      <div className={`flex  align-center desktop-menu`}>
+        <p onClick={() => navigate("/stations")} className="cursor-pointer">
+          Stations
+        </p>
 
-        <a href="/#contact">Contact</a>
-        <a href="/login" className="btn-style bg-secondary text-black">
-          Login
-        </a>
+        {token ? (
+          <ProfileButton />
+        ) : (
+          <p
+            onClick={() => navigate("/login")}
+            className="btn-style bg-secondary text-black "
+          >
+            Login
+          </p>
+        )}
       </div>
 
       {isOpen ? (
         <div
           className={`mobile-menu bg-blur column w-full align-center gap p `}
         >
-          <a href="/stations">Stations</a>
+          <p onClick={() => navigate("/stations")} className="cursor-pointer">
+            Stations
+          </p>
 
-          <a href="/contact">Contact</a>
-          <a href="/login" className="btn-style bg-secondary text-black">
-            Login
-          </a>
+          {token ? (
+            <ProfileButton />
+          ) : (
+            <p
+              onClick={() => navigate("/login")}
+              className="btn-style bg-secondary text-black"
+            >
+              Login
+            </p>
+          )}
         </div>
       ) : (
         ""

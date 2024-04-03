@@ -1,0 +1,16 @@
+.profile-btn img {
+  width: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid rgb(255, 174, 0);
+}
+.profile-btn {
+  position: relative;
+}
+
+.profile-drop {
+  position: absolute;
+  top: 55px;
+  left: -50px;
+  width: 150px;
+}

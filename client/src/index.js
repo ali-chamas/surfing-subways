@@ -19,59 +19,77 @@ import MyReviews from "./pages/manager/components/MyReviews";
 import MyMessages from "./pages/manager/components/MyMessages";
 import AdminStations from "./pages/admin/components/AdminStations";
 import MyTickets from "./pages/manager/components/MyTickets";
+import UserContextProvider from "./context/userContent";
+import ProtectedUser from "./routes/ProtectedUser";
+import ProtectedAdmin from "./routes/ProtectedAdmin";
+import ProtectedManager from "./routes/ProtectedManager";
+import ProtectedLoggedIn from "./routes/ProtectedLoggedIn";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        {/*Passenger */}
-        <Route path="/" element={<Layout children={<App />} />} />
-        <Route path="/stations" element={<Layout children={<Stations />} />} />
-        <Route
-          path="/singleStation/:id"
-          element={<Layout children={<SingleStation />} />}
-        />
-        <Route path="/login" element={<Layout children={<Login />} />} />
+    <UserContextProvider>
+      <BrowserRouter>
+        <Routes>
+          {/*Passenger */}
+          <Route path="/" element={<Layout children={<App />} />} />
+          <Route
+            path="/stations"
+            element={<Layout children={<Stations />} />}
+          />
+          <Route
+            path="/singleStation/:id"
+            element={<Layout children={<SingleStation />} />}
+          />
+          <Route elemen={<ProtectedLoggedIn />}>
+            <Route path="/login" element={<Layout children={<Login />} />} />
+          </Route>
 
-        {/*Admin */}
-        <Route
-          path="/dashboard/admin"
-          element={<Admin children={<Dashboard />} />}
-        />
+          <Route element={<ProtectedUser />}>
+            {/*Admin */}
+            <Route element={<ProtectedAdmin />}>
+              <Route
+                path="/dashboard/admin"
+                element={<Admin children={<Dashboard />} />}
+              />
 
-        <Route
-          path="/dashboard/admin/stations"
-          element={<Admin children={<AdminStations />} />}
-        />
-        <Route
-          path="/dashboard/admin/coin-requests"
-          element={<Admin children={<CoinRequests />} />}
-        />
+              <Route
+                path="/dashboard/admin/stations"
+                element={<Admin children={<AdminStations />} />}
+              />
+              <Route
+                path="/dashboard/admin/coin-requests"
+                element={<Admin children={<CoinRequests />} />}
+              />
+            </Route>
 
-        {/*Manager */}
-        <Route
-          path="/dashboard/manager"
-          element={<Manager children={<MyStation />} />}
-        />
+            {/*Manager */}
+            <Route element={<ProtectedManager />}>
+              <Route
+                path="/dashboard/manager"
+                element={<Manager children={<MyStation />} />}
+              />
 
-        <Route
-          path="/dashboard/manager/myRides"
-          element={<Manager children={<MyRides />} />}
-        />
-        <Route
-          path="/dashboard/manager/myReviews"
-          element={<Manager children={<MyReviews />} />}
-        />
-        <Route
-          path="/dashboard/manager/myMessages"
-          element={<Manager children={<MyMessages />} />}
-        />
-        <Route
-          path="/dashboard/manager/myTickets"
-          element={<Manager children={<MyTickets />} />}
-        />
-      </Routes>
-    </BrowserRouter>
+              <Route
+                path="/dashboard/manager/myRides"
+                element={<Manager children={<MyRides />} />}
+              />
+              <Route
+                path="/dashboard/manager/myReviews"
+                element={<Manager children={<MyReviews />} />}
+              />
+              <Route
+                path="/dashboard/manager/myMessages"
+                element={<Manager children={<MyMessages />} />}
+              />
+              <Route
+                path="/dashboard/manager/myTickets"
+                element={<Manager children={<MyTickets />} />}
+              />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </UserContextProvider>
   </React.StrictMode>
 );
