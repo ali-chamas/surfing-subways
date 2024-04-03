@@ -16,6 +16,7 @@ class Ticket extends Model
     }
 
     public function booking(){
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsTo(User::class);
     }
+
 }
