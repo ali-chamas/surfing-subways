@@ -69,12 +69,6 @@ class AuthController extends Controller
             'status' => $defualtStatus, 
         ]);
 
-        if ($request->has('role_id') && $request->role_id == 2){
-            $user->role_id = 2;
-            $user->save();
-        }
-
-
         $token = Auth::login($user);
         return response()->json([
             'status' => 'success',

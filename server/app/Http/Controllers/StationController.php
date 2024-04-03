@@ -26,19 +26,9 @@ class StationController extends Controller
         'location' => 'required|string',
         'name' => 'required|string',
         'image' => 'required|string',
+        'status' => 'required|string',
         'longitude' => 'required|numeric',
         'latitude' => 'required|numeric',
-        'operating_hour_from' => [
-            'required',
-            'string',
-            'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
-        ],
-        'operating_hour_to' => [
-            'required',
-            'string',
-            'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
-        ],
-
     ]);
     
     $station = new Station();
@@ -46,10 +36,9 @@ class StationController extends Controller
     $station->location = $request->location;
     $station->name = $request->name;
     $station->image = $request->image;
+    $station->status = $request->status; 
     $station->longitude = $request->longitude;
     $station->latitude = $request->latitude;
-    $station->operating_hour_from = $request->operating_hour_from;
-    $station->operating_hour_to = $request->operating_hour_to;
     $station->save();
 
     return response()->json(['message' => 'Station created successfully', 'station' => $station], 201);
@@ -67,8 +56,6 @@ class StationController extends Controller
             'status' => 'string',
             'longitude' => 'numeric',
             'latitude' => 'numeric',
-            'operating_hour_from' => 'date_format:H:i',
-            'operating_hour_to' => 'date_format:H:i',
         ]);
 
         $station->update($request->all());

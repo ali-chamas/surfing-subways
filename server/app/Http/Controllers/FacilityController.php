@@ -35,7 +35,7 @@ class FacilityController extends Controller
         $facility = Facility::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|unique:facilities,name,',
+            'name' => 'required|string|unique:facilities,name,' . $facility->id,
         ]);
 
         $facility->update($request->all());

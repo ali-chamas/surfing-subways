@@ -13,13 +13,13 @@ return new class extends Migration {
             $table->string('location');
             $table->string('name');
             $table->string('image');
-            $table->string('status')->default('active');
+            $table->string('status');
             $table->double('longitude');
             $table->double('latitude');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->time('operating_hour_from');
-            $table->time('operating_hour_to');
+            $table->dateTime('operating_hour_from');
+            $table->dateTime('operating_hour_to');
             $table->timestamps();
         });
 

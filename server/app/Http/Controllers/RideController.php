@@ -48,7 +48,6 @@ class RideController extends Controller
             'price' => 'required|numeric',
             'departure_station_id' => 'required|exists:stations,id',
             'arrival_station_id' => 'required|exists:stations,id',
-            'seats' => 'required|numeric'
         ]);
 
         $ride = Ride::findOrFail($id);
@@ -58,7 +57,6 @@ class RideController extends Controller
             'price' => $request->price,
             'departure_station_id' => $request->departure_station_id,
             'arrival_station_id' => $request->arrival_station_id,
-            'seats' => $request->seats
         ]);
 
         return response()->json(['message' => 'Ride updated successfully', 'ride' => $ride]);
