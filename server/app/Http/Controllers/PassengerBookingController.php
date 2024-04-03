@@ -23,6 +23,7 @@ class PassengerBookingController extends Controller
         'price' => 'required|numeric',
         'departure_station_id' => 'required|exists:stations,id',
         'arrival_station_id' => 'required|exists:stations,id',
+        'status' => 'required|string'
     ]);
 
     $user = User::findOrFail($user_id);
@@ -44,32 +45,27 @@ class PassengerBookingController extends Controller
         return response()->json(['message' => 'Departure station not active'], 400);
     }
 
-    if ($request->type === 'multiride') {
+    if ($request->status === 'multiride') {
         $ticketPrice *= 1.3;
+    }elseif($request->status === 'oneTime'){
+        $ticketPrice = $ride->price;
     }
 
     if ($user->coins < $ticketPrice) {
         return response()->json(['message' => 'Insufficient coins!'], 400);
     }
 
-    
-
-    $booking = new Booking();
-    $booking->type = $request->type;
-    $booking->user_id = $user->id;
-    
     $ticket = new Ticket();
     $ticket->type = $request->type;
+    $ticket->status = $request->status;
     $ticket->user_id = $user->id;
     $ticket->ride_id = $ride_id;
     $ticket->save();
 
-    $booking->ticket_id = $ticket->id;
-
-    $booking->save();
-
     $user->coins -= $ticketPrice;
+    $departureStation->revenue += $ticketPrice;
     $user->save();
+    $departureStation->save();
 
     return response()->json(['message' => 'Ticket purchased successfully'], 200);
 }
