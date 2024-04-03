@@ -12,6 +12,7 @@ use App\Http\Controllers\StationController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\StationFacilityController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\PassengerBookingController;
 
 
 
@@ -39,11 +40,10 @@ Route::post('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 
-//auth Controllers
+//Booking Controllers
 
-// Route::post('/login', [AuthController::class, 'login']);
-// Route::post('/register', [AuthController::class, 'register']);
-// Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('users/{userId}/rides/{rideId}/purchase', [PassengerBookingController::class, 'purchaseTicket']);
+Route::get('bookings', [PassengerBookingController::class, 'getAllBookings']);
 
 
 //role Controllers

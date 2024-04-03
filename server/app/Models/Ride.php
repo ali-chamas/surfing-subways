@@ -17,7 +17,12 @@ class Ride extends Model
         return $this->belongsToMany(Ticket::class, 'tickets');
     }
     
-    public function stations(){
-        return $this->belongsTo(Station::class, 'stations');
+    public function departure_station(){
+        return $this->belongsTo(Station::class, 'departure_station_id');
     }
+    
+    public function arrival_station(){
+        return $this->belongsTo(Station::class, 'arrival_station_id');
+    }
+    
 }
