@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { stations } from "../../home/components/Recommendations";
+import React, { useContext, useState } from "react";
+
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
+import { StationContext } from "../../../context/stationsContext";
 const MyStation = () => {
+  const { stations } = useContext(StationContext);
   const myStation = stations[0];
   const { facilitites } = stations[0];
 

@@ -9,9 +9,9 @@ const StationsMap = ({ stations }) => {
       <Map
         mapLib={maplibregl}
         initialViewState={{
-          longitude: 16.62662018,
-          latitude: 49.2125578,
-          zoom: 12,
+          longitude: 35.49548,
+          latitude: 33.88863,
+          zoom: 11,
         }}
         style={{ width: "100%", height: " calc(50vh)" }}
         mapStyle="https://api.maptiler.com/maps/streets/style.json?key=qNYCGSlfvbI5nEODpHvQ"
@@ -20,7 +20,7 @@ const StationsMap = ({ stations }) => {
         {stations.map((station, i) => (
           <Marker
             latitude={station.latitude}
-            longitude={station.longtitude}
+            longitude={station.longitude}
             color="rgb(255, 174, 0)"
           />
         ))}

@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('status')->default('active');
             $table->double('longitude');
             $table->double('latitude');
+            $table->double('rating');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->time('operating_hour_from');

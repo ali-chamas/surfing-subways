@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./style.css";
 import Recommendations from "./components/Recommendations";
 import Hero from "./components/Hero";
