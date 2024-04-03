@@ -21,8 +21,8 @@ const Recommendations = () => {
     const stationCountry = loc.split(",")[0];
     const userCountry = user.location.split(",")[0];
 
-    if (stationCountry == userCountry) return true;
-    else console.log(stationCountry, userCountry);
+    if (stationCountry == userCountry || stationCountry == userCountry)
+      return true;
   };
 
   return (
