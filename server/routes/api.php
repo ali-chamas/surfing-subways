@@ -51,7 +51,7 @@ Route::delete('/users/{id}', [UserController::class, 'destroy']);
 Route::get('/roles', [RoleController::class, 'index']);
 Route::post('/roles', [RoleController::class, 'store']);
 Route::get('/roles/{id}', [RoleController::class, 'show']);
-Route::put('/roles/{id}', [RoleController::class, 'update']);
+Route::post('/roles/{id}', [RoleController::class, 'update']);
 Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
 
 
@@ -60,7 +60,7 @@ Route::delete('/roles/{id}', [RoleController::class, 'destroy']);
 Route::get('/rides', [RideController::class, 'index']);
 Route::get('/rides/{id}', [RideController::class, 'show']);
 Route::post('/rides', [RideController::class, 'store']);
-Route::put('/rides/{id}', [RideController::class, 'update']);
+Route::post('/rides/{id}', [RideController::class, 'update']);
 Route::delete('/rides/{id}', [RideController::class, 'destroy']);
 
 

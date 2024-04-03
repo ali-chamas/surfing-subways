@@ -29,8 +29,16 @@ class StationController extends Controller
         // 'status' => 'required|string',
         'longitude' => 'required|numeric',
         'latitude' => 'required|numeric',
-        'operating_hour_from' => 'required|date_format:H:i',
-        'operating_hour_to' => 'required|date_format:H:i',
+        'operating_hour_from' => [
+            'required',
+            'string',
+            'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
+        ],
+        'operating_hour_to' => [
+            'required',
+            'string',
+            'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
+        ],
 
     ]);
     
