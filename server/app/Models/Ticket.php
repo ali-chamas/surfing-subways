@@ -12,7 +12,7 @@ class Ticket extends Model
     protected $fillable = ['ride_id', 'date', 'status'];
 
     public function ride(){
-        return $this->belongsToMany(Ride::class);
+        return $this->belongsTo(Ride::class);
     }
 
     public function booking(){

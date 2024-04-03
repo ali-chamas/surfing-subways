@@ -71,7 +71,7 @@ class PassengerActionController extends Controller
             return response()->json(['message' => 'Invalid review type'], 400);
         }
 
-
+        
         return response()->json(['message' => 'Review submitted successfully'], 200);
     }
 }

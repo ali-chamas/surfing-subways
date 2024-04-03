@@ -12,6 +12,7 @@ use App\Http\Controllers\StationController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\StationFacilityController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\RequestController;
 
 
 
@@ -83,8 +84,11 @@ Route::put('/coin-requests/{id}/process', [CoinsRequestController::class, 'proce
 
 //BranchInvitation Controllers
 
-Route::post('invitations', [InvitationController::class, 'sendInvitation']);
-Route::delete('invitations/{id}', [InvitationController::class, 'cancelInvitation']);
+Route::post('invitations', [InvitationController::class, 'invite']);
+Route::delete('invitations/{id}', [InvitationController::class, 'invite']);
+
+//RequestInvitation Controller
+Route::post('/requestInvitation', [RequestController::class, 'sendContactForm']);
 
 
 //Station Controllers

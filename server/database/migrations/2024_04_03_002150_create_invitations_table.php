@@ -6,21 +6,23 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
-        Schema::create('tickets', function (Blueprint $table) {
+        Schema::create('invitations', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('date');
-            $table->string('status');
-            $table->unsignedBigInteger('ride_id');
-            $table->foreign('ride_id')->references('id')->on('rides');
+            $table->string('branch_email');
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('tickets');
+        Schema::dropIfExists('invitations');
     }
 };
