@@ -1,31 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import StationsCard from "../../../common/components/StationsCard";
+import { StationContext } from "../../../context/stationsContext";
+import { sendRequest } from "../../../tools/request/request";
+import { UserContext } from "../../../context/userContext";
 
-export const stations = [
-  {
-    id: 1,
-    name: "Aazmi Station",
-    image:
-      "https://images.unsplash.com/photo-1556695736-d287caebc48e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    rating: 3.5,
-    location: "Beirut,Lebanon",
-    facilitites: ["restroom", "coffee shop"],
-    longtitude: 16.62662018,
-    latitude: 49.2125578,
-  },
-  {
-    id: 2,
-    name: "El Hilal Station",
-    image:
-      "https://images.unsplash.com/photo-1553184257-604db3e574a8?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    rating: 4,
-    location: "Beirut,Lebanon",
-    facilitites: ["restroom", "coffee shop", "caffeteria"],
-    longtitude: 16.52662018,
-    latitude: 49.2125578,
-  },
-];
 const Recommendations = () => {
+  const { stations, setStations } = useContext(StationContext);
+  const { user } = useContext(UserContext);
+  const getStations = async () => {
+    const res = await sendRequest("GET", "/stations");
+    const data = await res.data;
+    setStations(data);
+  };
+
+  useEffect(() => {
+    getStations();
+  }, []);
+
+  const checkRecommendations = (loc) => {
+    const stationCountry = loc.split(",")[0];
+    const userCountry = user.location.split(",")[0];
+
+    if (stationCountry == userCountry) return true;
+    else console.log(stationCountry, userCountry);
+  };
+
   return (
     <section
       id="recommended-stations"
@@ -33,9 +32,12 @@ const Recommendations = () => {
     >
       <h2>Nearest Stations to you</h2>
       <div className="stations-container flex column gap w-full">
-        {stations.map((station, i) => (
-          <StationsCard station={station} key={i} />
-        ))}
+        {stations.map(
+          (station, i) =>
+            checkRecommendations(station.location) && (
+              <StationsCard station={station} key={i} />
+            )
+        )}
       </div>
     </section>
   );

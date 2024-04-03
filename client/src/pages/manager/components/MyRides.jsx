@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { stations } from "../../home/components/Recommendations";
+import React, { useContext, useState } from "react";
+
 import DashboardTable from "../../../common/components/DashboardTable";
+import { StationContext } from "../../../context/stationsContext";
 const MyRides = () => {
+  const { stations } = useContext(StationContext);
   const [allStations, setStations] = useState(stations);
   const [isChanged, setIsChanged] = useState(false);
   const [chosenStation, setChosenStation] = useState(stations[0].id);

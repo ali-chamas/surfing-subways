@@ -6,24 +6,13 @@ import StationsCard from "../../common/components/StationsCard";
 import StationsMap from "./components/StationsMap";
 import { sendRequest } from "../../tools/request/request";
 import { useContext } from "react";
-import { UserContext } from "../../context/userContent";
+import { UserContext } from "../../context/userContext";
+import { StationContext } from "../../context/stationsContext";
 
 const Stations = () => {
-  const [stations, setStations] = useState([]);
-  const [filteredStations, setFilteredStations] = useState([]);
+  const { stations } = useContext(StationContext);
+  const [filteredStations, setFilteredStations] = useState(stations);
   const { user } = useContext(UserContext);
-
-  const getStations = async () => {
-    const res = await sendRequest("GET", "/stations");
-    const data = await res.data;
-    setStations(data);
-    setFilteredStations(data);
-    console.log(data);
-  };
-
-  useEffect(() => {
-    getStations();
-  }, []);
 
   const handleSearch = (e) => {
     const searchValue = e.target.value;
@@ -45,7 +34,7 @@ const Stations = () => {
   return (
     <section className="stations-section flex column  align-center">
       <div className="map-wrap">
-        <StationsMap stations={stations} />
+        {/* <StationsMap stations={stations} /> */}
       </div>
 
       <div className="flex justify-between bg-primary small-gap p border-radius w-full">

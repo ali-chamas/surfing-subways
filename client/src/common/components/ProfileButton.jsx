@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { UserContext } from "../../context/userContent";
+import { UserContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import "../styles/profile.css";
 import { TbCoinFilled } from "react-icons/tb";

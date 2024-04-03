@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import "../styles/navbar.css";
-import { UserContext } from "../../context/userContent";
+import { UserContext } from "../../context/userContext";
 import ProfileButton from "./ProfileButton";
 import { useNavigate } from "react-router-dom";
 
