@@ -15,7 +15,7 @@ class PassengerBookingController extends Controller
 {
     public function purchaseTicket(Request $request, $user_id, $ride_id)
 {
-    \Log::info('User ID: ' . $request->user_id);
+    
 
     $request->validate([
         'departure_time' => 'required',
