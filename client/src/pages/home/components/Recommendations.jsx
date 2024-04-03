@@ -21,8 +21,7 @@ const Recommendations = () => {
     const stationCountry = loc.split(",")[0];
     const userCountry = user.location.split(",")[0];
 
-    if (stationCountry == userCountry || stationCountry == userCountry)
-      return true;
+    if (stationCountry.startsWith(userCountry)) return true;
   };
 
   return (
@@ -34,9 +33,8 @@ const Recommendations = () => {
       <div className="stations-container flex column gap w-full">
         {stations.map(
           (station, i) =>
-            checkRecommendations(station.location) && (
-              <StationsCard station={station} key={i} />
-            )
+            checkRecommendations(station.location) &&
+            i <= 3 && <StationsCard station={station} key={i} />
         )}
       </div>
     </section>
