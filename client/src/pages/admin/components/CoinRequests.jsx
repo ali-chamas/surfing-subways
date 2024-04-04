@@ -74,7 +74,8 @@ const CoinRequests = () => {
         <DashboardTable
           headers={myHeaders}
           body={requests.map((request) => {
-            const user = users.find((user) => user.id === request.user_id);
+            if(request.status != 'Accepted'){
+              const user = users.find((user) => user.id === request.user_id);
             return (
               <tr key={request.id}>
                 <td>{request.id}</td>
@@ -99,6 +100,8 @@ const CoinRequests = () => {
                 </td>
               </tr>
             );
+            } 
+            
           })}
         />
       </div>

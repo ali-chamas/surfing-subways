@@ -52,15 +52,12 @@ class CoinsRequestController extends Controller
     {
     $coinRequest = CoinRequest::findOrFail($id);
 
-    if ($coinRequest->status !== 'Pending') {
-        return response()->json(['message' => 'Coin request has already been processed'], 400);
-    }
 
-    if ($request->status === 'Accepted') {
+
         $user = User::findOrFail($coinRequest->user_id);
         $user->coins += $coinRequest->amount;
         $user->save();
-    }
+
 
         $coinRequest->status = $request->status;
         $coinRequest->approved_by = 1;
