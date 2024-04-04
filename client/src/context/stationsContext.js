@@ -25,7 +25,7 @@ const StationContextProvider = ({ children }) => {
   }, [stations.length]);
 
   return (
-    <StationContext.Provider value={{ stations }}>
+    <StationContext.Provider value={{ stations, getStations }}>
       {loading && <Loader />}
       {children}
     </StationContext.Provider>

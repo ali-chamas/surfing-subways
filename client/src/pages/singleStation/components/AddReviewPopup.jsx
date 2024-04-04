@@ -2,17 +2,22 @@ import React, { useContext, useState } from 'react'
 import axios from "axios";
 import { sendRequest } from '../../../tools/request/request';
 import { UserContext } from '../../../context/userContext';
+import { StationContext } from '../../../context/stationsContext';
 
-const AddReviewPopup = ({setOpenAddReviewPopup, ride , getReviews}) => {
+const AddReviewPopup = ({setOpenAddReviewPopup, ride , getReviews, getRides}) => {
 
     const [reviews, setReviews] = useState([{message : '', rating: ''}])
 
     const {user} = useContext(UserContext);
 
+    const {getStations} = useContext(StationContext);
+
     const addReview = async()=>{
       const res = await sendRequest('POST', `/reviews/${ride.id}/${user.id}`, reviews)
       console.log(res);
       await getReviews();
+      await getRides();
+      await getStations();
       setOpenAddReviewPopup(false);
     }
 

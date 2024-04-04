@@ -10,7 +10,7 @@ import { MdOutlineRateReview } from "react-icons/md";
 import { FaTicket } from "react-icons/fa6";
 import { sendRequest } from "../../../tools/request/request";
 
-const StationsRide = ({ stationRide, station }) => {
+const StationsRide = ({ stationRide, station, getRides }) => {
   const { stations } = useContext(StationContext);
   const [arrival, setArrival] = useState("");
   const [reviews, setReviews] = useState([]);
@@ -38,7 +38,7 @@ const StationsRide = ({ stationRide, station }) => {
   return (
     <div className="flex  justify-between w-full bg-black p stationRide-card">
       {openReviewPopup && (
-        <ReviewsPopup review={reviews} getReviews={getReviews} ride={stationRide} setOpenReviewPopup={setOpenReviewPopup} />
+        <ReviewsPopup getRides={getRides} review={reviews} getReviews={getReviews} ride={stationRide} setOpenReviewPopup={setOpenReviewPopup} />
       )}
 
       {openBuyTicketPopup && (
