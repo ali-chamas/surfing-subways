@@ -14,7 +14,7 @@ use App\Http\Controllers\StationFacilityController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\PassengerBookingController;
 use App\Http\Controllers\RequestController;
-
+use App\Http\Controllers\PasswordResetController;
 
 
 Route::get('/user', function (Request $request) {
@@ -88,20 +88,12 @@ Route::post('/coin-requests/{id}/process', [CoinsRequestController::class, 'proc
 Route::post('invitations', [InvitationController::class, 'sendInvitation']);
 Route::delete('invitations/{id}', [InvitationController::class, 'cancelInvitation']);
 
+
 //otp controllers
 
-use App\Http\Controllers\PasswordResetController;
-
-// Route to display the form to enter email for password reset
 Route::get('/forgot-password', [PasswordResetController::class, 'showForgotPasswordForm']);
-
-// Route to handle submission of email for password reset
 Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink']);
-
-// Route to display the form for resetting the password
 Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetForm']);
-
-// Route to handle submission of password reset
 Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']);
 
 

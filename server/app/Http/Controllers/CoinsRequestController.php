@@ -49,12 +49,8 @@ class CoinsRequestController extends Controller
     }
 
     public function processRequest(Request $request, $id)
-    {
+{
     $coinRequest = CoinRequest::findOrFail($id);
-
-    if ($coinRequest->status !== 'Pending') {
-        return response()->json(['message' => 'Coin request has already been processed'], 400);
-    }
 
     if ($request->status === 'Accepted') {
         $user = User::findOrFail($coinRequest->user_id);
@@ -62,12 +58,13 @@ class CoinsRequestController extends Controller
         $user->save();
     }
 
-        $coinRequest->status = $request->status;
-        $coinRequest->approved_by = 1;
-        $coinRequest->save();
+    $coinRequest->status = $request->status;
+    $coinRequest->approved_by = 1;
+    $coinRequest->save();
+    $coinRequest->delete();
 
     return response()->json(['message' => 'Coin request processed successfully'], 200);
-    }
+}
 
 
     public function destroy($id)
