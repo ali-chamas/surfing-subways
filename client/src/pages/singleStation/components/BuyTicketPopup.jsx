@@ -25,7 +25,9 @@ const BuyTicketPopup = ({
           reqBody
         );
         console.log(res);
+
         updateUser();
+        toast("purchased!");
       } else {
         toast("please login");
       }
