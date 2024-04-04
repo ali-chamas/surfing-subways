@@ -17,9 +17,14 @@ const StationsRide = ({ stationRide, station }) => {
 
   const getReviews = async() =>{
 
-    const res = await sendRequest('GET',`/reviews/`) 
+    const res = await sendRequest('GET',`/reviews/${stationRide.id}`)
+    setReviews(res.data)
 
   }
+
+  useEffect(() => {
+    getReviews();
+  }, [])
 
   useEffect(() => {
     stations.map(
@@ -33,7 +38,7 @@ const StationsRide = ({ stationRide, station }) => {
   return (
     <div className="flex  justify-between w-full bg-black p stationRide-card">
       {openReviewPopup && (
-        <ReviewsPopup review={review} setOpenReviewPopup={setOpenReviewPopup} />
+        <ReviewsPopup review={reviews} getReviews={getReviews} ride={stationRide} setOpenReviewPopup={setOpenReviewPopup} />
       )}
 
       {openBuyTicketPopup && (
