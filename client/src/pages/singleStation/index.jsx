@@ -23,11 +23,9 @@ const App = () => {
     setLoading(false);
   };
 
-  const getStation = () => {
-    stations.length > 0 &&
-      stations.map((station) => {
-        station.id == id && setThisStation(station);
-      });
+  const getStation = async () => {
+    const res = await sendRequest("GET", `/stations/${id}`);
+    setThisStation(res.data);
   };
 
   const getFacilities = async () => {
@@ -49,7 +47,12 @@ const App = () => {
       {loading && <Loader />}
       <Hero2 station={thisStation} />
       <Info station={thisStation} facilities={facilities} />
-      <Rides station={thisStation} getRides={getRides} stationRides={stationRides} />
+      <Rides
+        station={thisStation}
+        getRides={getRides}
+        stationRides={stationRides}
+        getStation={getStation}
+      />
       <div
         className="chat-btn bg-secondary text-black large-font flex center cursor-pointer"
         onClick={() => setOpenChat(true)}
