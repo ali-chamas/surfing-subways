@@ -38,7 +38,7 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('status');
+            $table->string('status')->default('pending');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('ride_id');
             $table->foreign('ride_id')->references('id')->on('rides');

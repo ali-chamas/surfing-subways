@@ -4,19 +4,7 @@ import "../stationInfo.css";
 import RatingStars from "../../../common/components/RatingStars";
 import { sendRequest } from "../../../tools/request/request";
 
-const StationsInfo = ({ stationInfo }) => {
-  const [facilities, setFacilities] = useState([]);
-
-  const getFacilities = async () => {
-    const res = await sendRequest("GET", `/facilities/${stationInfo.id}`);
-    const data = await res.data;
-    setFacilities(data);
-  };
-
-  useEffect(() => {
-    getFacilities();
-  }, [stationInfo]);
-
+const StationsInfo = ({ stationInfo, facilities }) => {
   return (
     <>
       <div className="flex column gap stationInfo-section1">

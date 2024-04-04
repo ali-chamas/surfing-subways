@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ticket;
 use App\Models\Station;
-use App\Models\Booking;
 use App\Models\User;
 use App\Models\RideReview;
 use App\Models\Ride;
@@ -14,16 +13,12 @@ use App\Models\Ride;
 class PassengerBookingController extends Controller
 {
     public function purchaseTicket(Request $request, $user_id, $ride_id)
-{
+    {
     
 
     $request->validate([
-        'departure_time' => 'required',
-        'arrival_time' => 'required',
         'price' => 'required|numeric',
         'departure_station_id' => 'required|exists:stations,id',
-        'arrival_station_id' => 'required|exists:stations,id',
-        'status' => 'required|string'
     ]);
 
     $user = User::findOrFail($user_id);
@@ -45,9 +40,9 @@ class PassengerBookingController extends Controller
         return response()->json(['message' => 'Departure station not active'], 400);
     }
 
-    if ($request->status === 'multiride') {
+    if ($request->getContentTypeFormat === 'multiride') {
         $ticketPrice *= 1.3;
-    }elseif($request->status === 'oneTime'){
+    }elseif($request->type === 'oneTime'){
         $ticketPrice = $ride->price;
     }
 
@@ -57,7 +52,6 @@ class PassengerBookingController extends Controller
 
     $ticket = new Ticket();
     $ticket->type = $request->type;
-    $ticket->status = $request->status;
     $ticket->user_id = $user->id;
     $ticket->ride_id = $ride_id;
     $ticket->save();

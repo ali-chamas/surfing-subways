@@ -3,7 +3,9 @@ import "../styles/stationsCard.css";
 
 import RatingStars from "./RatingStars";
 import { sendRequest } from "../../tools/request/request";
+import { useNavigate } from "react-router-dom";
 const StationsCard = ({ station }) => {
+  const navigate = useNavigate();
   const [facilities, setFacilities] = useState([]);
 
   const getFacilities = async () => {
@@ -34,12 +36,12 @@ const StationsCard = ({ station }) => {
               ))}
             </div>
           </div>
-          <a
-            href={`/singleStation/${station.id}`}
+          <p
+            onClick={() => navigate(`/singleStation/${station.id}`)}
             className="btn-style bg-secondary text-black"
           >
             View station
-          </a>
+          </p>
         </div>
       </div>
     </div>

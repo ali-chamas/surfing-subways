@@ -19,7 +19,6 @@ const StationsRide = ({ stationRide, station }) => {
   const [openReviewPopup, setOpenReviewPopup] = useState(false);
   const [openBuyTicketPopup, setOpenBuyTicketPopup] = useState(false);
 
-  console.log(stationRide);
   return (
     <div className="flex row justify-between w-full bg-black stationRide-card">
       {/* {openReviewPopup && (
