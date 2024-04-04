@@ -1,7 +1,17 @@
 .stationInfo-section1 {
-    width: 80%;
+  width: 80%;
 }
 
 .stationInfo-section2 {
-    width: 20%;
+  width: 20%;
+}
+
+@media (max-width: 500px) {
+  .info-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .stationInfo-section2 {
+    width: 80%;
+  }
 }
