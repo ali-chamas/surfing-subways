@@ -16,6 +16,7 @@ use App\Http\Controllers\PassengerBookingController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\RideReviewsController;
 
 
 
@@ -126,3 +127,8 @@ Route::delete('invitations/{id}', [InvitationController::class, 'invite']);
 
 //RequestInvitation Controller
 Route::post('/requestInvitation', [RequestController::class, 'sendContactForm']);
+
+
+//reviews
+Route::post('/reviews/{ride_id}/{user_id}',[RideReviewsController::class,'addReview']);
+Route::get('/reviews/{ride_id}/{user_id}',[RideReviewsController::class,'getReviews']);

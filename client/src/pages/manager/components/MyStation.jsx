@@ -1,19 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { MdDelete } from "react-icons/md";
 import { FaPen } from "react-icons/fa";
 import { StationContext } from "../../../context/stationsContext";
 const MyStation = () => {
   const { stations } = useContext(StationContext);
-  const myStation = stations[0];
-  const { facilitites } = stations[0];
+  console.log(stations);
 
-  const [name, setName] = useState(myStation.name);
-  const [allFacilities, setAllFacilities] = useState(facilitites);
-  const [img, setImg] = useState(myStation.image);
-  const [status, setStatus] = useState(myStation.status);
+  const [myStation, setMyStation] = useState({});
+
+  const [name, setName] = useState("");
+  const [allFacilities, setAllFacilities] = useState([]);
+  const [img, setImg] = useState("myStation.image");
+  const [status, setStatus] = useState("myStation.status");
   const [singleFacility, setSingleFacility] = useState("");
   const [isChanged, setIsChanged] = useState(false);
+  useEffect(() => {
+    setMyStation(stations[0]);
+  }, [stations.length]);
 
   const handleSetters = (setter, value) => {
     setter(value);
@@ -58,7 +62,7 @@ const MyStation = () => {
             </button>
           </div>
           <div className="flex small-gap">
-            {allFacilities.map((f, i) => (
+            {/* {allFacilities.map((f, i) => (
               <div
                 key={i}
                 className="bg-primary p border-radius flex small-gap"
@@ -74,7 +78,7 @@ const MyStation = () => {
                   <MdDelete />
                 </p>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
         <div className="flex column small-gap w-full">

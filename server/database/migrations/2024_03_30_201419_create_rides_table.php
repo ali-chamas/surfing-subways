@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('price');
             $table->unsignedBigInteger('departure_station_id');
             $table->unsignedBigInteger('arrival_station_id');
+            $table->integer('rating')->default(0);
             $table->foreign('departure_station_id')->references('id')->on('stations');
             $table->foreign('arrival_station_id')->references('id')->on('stations');
             $table->unsignedTinyInteger('seats')->default(40)->nullable(false)->unsigned();
