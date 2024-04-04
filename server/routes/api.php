@@ -14,6 +14,7 @@ use App\Http\Controllers\StationFacilityController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\PassengerBookingController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\TicketController;
 
 
 
@@ -48,7 +49,8 @@ Route::post('users/{userId}/rides/{rideId}/purchase', [PassengerBookingControlle
 
 //Ticket Controllers
 
-
+Route::get('ticket',[TicketController::class, 'index']);
+Route::post('ticket/{id}',[TicketController::class, 'update']);
 
 //role Controllers
 
