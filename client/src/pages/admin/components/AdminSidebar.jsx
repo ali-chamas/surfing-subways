@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import "../../../common/styles/sidebar.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { UserContext } from "../../../context/userContext";
 const AdminSidebar = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { logout } = useContext(UserContext);
   return (
     <div className="flex column justify-between h-full bg-primary p align-center sidebar">
       <div className="flex column gap align-center">
@@ -44,9 +42,7 @@ const AdminSidebar = () => {
           Coin requests
         </button>
       </div>
-      <button className="btn-style bg-danger text-white" onClick={logout}>
-        Logout
-      </button>
+      <button className="btn-style bg-danger text-white">Logout</button>
     </div>
   );
 };

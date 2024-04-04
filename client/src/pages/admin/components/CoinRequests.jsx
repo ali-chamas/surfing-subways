@@ -1,74 +1,107 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import DashboardTable from "../../../common/components/DashboardTable";
-
+import axios from "axios";
 
 const CoinRequests = () => {
+  const [requests, setRequests] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  const requests = [
-    {
-      id:1,
-      name:'test',
-      email:'test@gmail.com',
-      amount:'200'
-    },
-    {
-      id:2,
-      name:'test',
-      email:'test@gmail.com',
-      amount:'200'
-    },
-    {
-      id:3,
-      name:'test',
-      email:'test@gmail.com',
-      amount:'200'
-    },
-    {
-      id:4,
-      name:'test',
-      email:'test@gmail.com',
-      amount:'200'
-    },
-    {
-      id:5,
-      name:'test',
-      email:'test@gmail.com',
-      amount:'200'
-    },
-    
-  ]
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/coin-requests")
+      .then((response) => {
+        setRequests(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching coin requests:", error);
+      });
 
-  const myHeaders = [
-    "ID",
-    "Name",
-    "Email",
-    "Amount",
-    "Action",
-    "Action",
-  ];
+    axios
+      .get("http://localhost:8000/api/users")
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+  }, []);
+
+  const handleAccept = (id) => {
+    axios
+      .post(`http://localhost:8000/api/coin-requests/${id}/process`, {
+        status: "Accepted",
+      })
+      .then((response) => {
+        axios
+          .get("http://localhost:8000/api/coin-requests")
+          .then((response) => {
+            setRequests(response.data);
+          })
+          .catch((error) => {
+            console.error("Error refreshing coin requests:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error accepting coin request:", error);
+      });
+  };
+
+  const handleReject = (id) => {
+    axios
+      .delete(`http://localhost:8000/api/coin-requests/${id}`)
+      .then((response) => {
+        console.log("Coin request rejected successfully");
+        axios
+          .get("http://localhost:8000/api/coin-requests")
+          .then((response) => {
+            setRequests(response.data);
+          })
+          .catch((error) => {
+            console.error("Error refreshing coin requests:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error rejecting coin request:", error);
+      });
+  };
+
+  const myHeaders = ["ID", "Name", "Email", "Amount", "Action", "Action"];
 
   return (
     <div className="flex column align-center w-full">
       <div className="mg-table p gap flex column bg-black border-radius">
-          <h2>Requests</h2>
-          <DashboardTable
-            headers={myHeaders}
-            body={requests.map((request, i) => (
-              <tr>
+        <h2>Requests</h2>
+        <DashboardTable
+          headers={myHeaders}
+          body={requests.map((request) => {
+            const user = users.find((user) => user.id === request.user_id);
+            return (
+              <tr key={request.id}>
                 <td>{request.id}</td>
-                <td>{request.name}</td>
-                <td>{request.email}</td>
+                <td>{user ? user.username : "Unknown"}</td>
+                <td>{user ? user.email : "Unknown"}</td>
                 <td>{request.amount}</td>
                 <td>
-                  <button className="btn-style bg-secondary text-white">Accept</button>
+                  <button
+                    className="btn-style bg-secondary text-white"
+                    onClick={() => handleAccept(request.id)}
+                  >
+                    Accept
+                  </button>
                 </td>
                 <td>
-                <button className="btn-style bg-danger text-white">Reject</button>
+                  <button
+                    className="btn-style bg-danger text-white"
+                    onClick={() => handleReject(request.id)}
+                  >
+                    Reject
+                  </button>
                 </td>
               </tr>
-            ))}
-          />
-        </div>
+            );
+          })}
+        />
+      </div>
     </div>
   );
 };
