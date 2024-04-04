@@ -9,7 +9,7 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['ride_id', 'date', 'status'];
+    protected $fillable = ['ride_id', 'user_id', 'type'];
 
     public function ride(){
         return $this->belongsTo(Ride::class);
