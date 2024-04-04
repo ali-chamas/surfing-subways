@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../stationRide.css";
 
-
 import RatingStars from "../../../common/components/RatingStars";
 import ReviewsPopup from "./ReviewsPopup";
 import BuyTicketPopup from "./BuyTicketPopup";
@@ -10,21 +9,19 @@ import { MdOutlineRateReview } from "react-icons/md";
 import { FaTicket } from "react-icons/fa6";
 import { sendRequest } from "../../../tools/request/request";
 
-const StationsRide = ({ stationRide, station, getRides }) => {
+const StationsRide = ({ stationRide, station, getRides, getStation }) => {
   const { stations } = useContext(StationContext);
   const [arrival, setArrival] = useState("");
   const [reviews, setReviews] = useState([]);
 
-  const getReviews = async() =>{
-
-    const res = await sendRequest('GET',`/reviews/${stationRide.id}`)
-    setReviews(res.data)
-
-  }
+  const getReviews = async () => {
+    const res = await sendRequest("GET", `/reviews/${stationRide.id}`);
+    setReviews(res.data);
+  };
 
   useEffect(() => {
     getReviews();
-  }, [])
+  }, []);
 
   useEffect(() => {
     stations.map(
@@ -38,7 +35,14 @@ const StationsRide = ({ stationRide, station, getRides }) => {
   return (
     <div className="flex  justify-between w-full bg-black p stationRide-card">
       {openReviewPopup && (
-        <ReviewsPopup getRides={getRides} review={reviews} getReviews={getReviews} ride={stationRide} setOpenReviewPopup={setOpenReviewPopup} />
+        <ReviewsPopup
+          getRides={getRides}
+          getStation={getStation}
+          review={reviews}
+          getReviews={getReviews}
+          ride={stationRide}
+          setOpenReviewPopup={setOpenReviewPopup}
+        />
       )}
 
       {openBuyTicketPopup && (
