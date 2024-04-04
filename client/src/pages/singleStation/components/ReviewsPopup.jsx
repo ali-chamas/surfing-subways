@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import Reviews from './Reviews'
 import AddReviewPopup from './AddReviewPopup'
 
-const ReviewsPopup = ({review, setOpenReviewPopup}) => {
+const ReviewsPopup = ({review, setOpenReviewPopup, ride, getReviews, getRides}) => {
 
   const [openAddReviewPopup, setOpenAddReviewPopup] = useState(false);
 
   return (
     <div className='popup'>
       
-      {openAddReviewPopup && <AddReviewPopup review={review} setOpenAddReviewPopup={setOpenAddReviewPopup}/>}
+      {openAddReviewPopup && <AddReviewPopup getRides={getRides} ride={ride} getReviews={getReviews} review={review} setOpenAddReviewPopup={setOpenAddReviewPopup}/>}
 
       <div className='flex column align-center popup-child bg-default border-radius gap p'>
 

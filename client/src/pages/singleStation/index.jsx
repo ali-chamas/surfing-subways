@@ -49,7 +49,7 @@ const App = () => {
       {loading && <Loader />}
       <Hero2 station={thisStation} />
       <Info station={thisStation} facilities={facilities} />
-      <Rides station={thisStation} stationRides={stationRides} />
+      <Rides station={thisStation} getRides={getRides} stationRides={stationRides} />
       <div
         className="chat-btn bg-secondary text-black large-font flex center cursor-pointer"
         onClick={() => setOpenChat(true)}

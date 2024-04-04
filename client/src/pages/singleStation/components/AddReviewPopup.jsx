@@ -1,9 +1,26 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from "axios";
+import { sendRequest } from '../../../tools/request/request';
+import { UserContext } from '../../../context/userContext';
+import { StationContext } from '../../../context/stationsContext';
 
-const AddReviewPopup = ({setOpenAddReviewPopup}) => {
+const AddReviewPopup = ({setOpenAddReviewPopup, ride , getReviews, getRides}) => {
 
     const [reviews, setReviews] = useState([{message : '', rating: ''}])
+
+    const {user} = useContext(UserContext);
+
+    const {getStations} = useContext(StationContext);
+
+    const addReview = async()=>{
+      const res = await sendRequest('POST', `/reviews/${ride.id}/${user.id}`, reviews)
+      console.log(res);
+      await getReviews();
+      await getRides();
+      await getStations();
+      setOpenAddReviewPopup(false);
+    }
+
 
   return (
     <div className='popup'>
@@ -32,25 +49,7 @@ const AddReviewPopup = ({setOpenAddReviewPopup}) => {
                 }}/>
                 </div>
               
-                <p onClick={async()=>{
-                    try{
-                        const {message , rating} = reviews
-
-                        const response = await axios.post(
-                            "",
-                            {
-                                message,
-                                rating,
-                            }
-                        );
-                        if(response.data.status === "success"){
-                        setOpenAddReviewPopup(false);
-                    }
-                    
-                    } catch(error){  
-                        console.error(error);
-                    }
-                }} className='add-rev cursor-pointer bg-secondary text-black bold border-radius'>ADD REVIEW</p>
+                <p onClick={addReview} className='add-rev cursor-pointer bg-secondary text-black bold border-radius'>ADD REVIEW</p>
             </div>
             
     </div>
