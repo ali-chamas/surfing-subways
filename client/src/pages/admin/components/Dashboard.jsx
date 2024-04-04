@@ -58,7 +58,7 @@ const Dashboard = () => {
               <td>{user.location}</td>
               <td>
                 <button className="btn-style bg-danger text-white">
-                  Delete
+                  Ban
                 </button>
               </td>
             </tr>

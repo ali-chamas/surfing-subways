@@ -26,6 +26,7 @@ class StationController extends Controller
         'location' => 'required|string',
         'name' => 'required|string',
         'image' => 'required|string',
+        'status' => 'required|string',
         'longitude' => 'required|numeric',
         'latitude' => 'required|numeric',
         'rating' => 'numeric',
