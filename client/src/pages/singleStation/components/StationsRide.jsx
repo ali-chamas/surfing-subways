@@ -23,9 +23,9 @@ const StationsRide = ({ stationRide, station }) => {
 
   return (
     <div className="flex  justify-between w-full bg-black p stationRide-card">
-      {/* {openReviewPopup && (
+      {openReviewPopup && (
         <ReviewsPopup review={review} setOpenReviewPopup={setOpenReviewPopup} />
-      )} */}
+      )}
 
       {openBuyTicketPopup && (
         <BuyTicketPopup

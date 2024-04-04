@@ -132,4 +132,4 @@ Route::post('/requestInvitation', [RequestController::class, 'sendContactForm'])
 
 //reviews
 Route::post('/reviews/{ride_id}/{user_id}',[RideReviewsController::class,'addReview']);
-Route::get('/reviews/{ride_id}/{user_id}',[RideReviewsController::class,'getReviews']);
+Route::get('/reviews/{ride_id}',[RideReviewsController::class,'getReviews']);

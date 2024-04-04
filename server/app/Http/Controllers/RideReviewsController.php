@@ -11,11 +11,9 @@ use App\Models\Ride;
 
 class RideReviewsController extends Controller
 {
-    public function getReviews(Request $request, $rideId, $userId)
+    public function getReviews(Request $request, $rideId)
 {
-    $review = RideReview::where('ride_id', $rideId)
-        ->where('user_id', $userId)
-        ->get();
+    $review = RideReview::where('ride_id', $rideId)->get();
     if (!$review) {
         return response()->json(['error' => 'Review not found.'], 404);
     }
