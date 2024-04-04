@@ -18,6 +18,18 @@ const Dashboard = () => {
       });
   }, []);
 
+  const handleBanUser = (id) => {
+    axios
+      .delete(`http://localhost:8000/api/users/${id}`)
+      .then((response) => {
+        console.log(response.data.message);
+        setUsers(users.filter((user) => user.id !== id));
+      })
+      .catch((error) => {
+        console.error("Error deleting user:", error);
+      });
+  };
+
   const myHeaders = ["ID", "Name", "Email", "Location", "Action"];
 
   return (
@@ -57,7 +69,11 @@ const Dashboard = () => {
               <td>{user.email}</td>
               <td>{user.location}</td>
               <td>
-                <button className="btn-style bg-danger text-white">Ban</button>
+              <button
+                  className="btn-style bg-danger text-white"
+                  onClick={() => handleBanUser(user.id)}
+                >Ban
+              </button>
               </td>
             </tr>
           ))}
