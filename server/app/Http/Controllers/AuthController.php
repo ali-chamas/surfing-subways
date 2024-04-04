@@ -73,6 +73,17 @@ class AuthController extends Controller
             $user->role_id = 2;
             $user->save();
         }
+        $token = Auth::login($user);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User created successfully',
+            'username' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+
     }
 
         public function registerManager(Request $request)
