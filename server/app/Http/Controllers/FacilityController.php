@@ -25,7 +25,7 @@ class FacilityController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|unique:facilities,name',
+            'name' => 'required|string',
             'station_id'=>'required|integer'
         ]);
 
@@ -39,7 +39,7 @@ class FacilityController extends Controller
         $facility = Facility::findOrFail($id);
 
         $request->validate([
-            'name' => 'required|string|unique:facilities,name,',
+            'name' => 'required|string',
             
         ]);
 

@@ -56,7 +56,7 @@ const AdminStations = () => {
     })
       .then((response) => {
         if (response.ok) {
-          setStations(stations.filter((station) => station.id !== id));
+          getAllStations();
         } else {
           throw new Error("Failed to delete station");
         }
@@ -93,7 +93,6 @@ const AdminStations = () => {
         alert("Failed to add manager. Please try again.");
       });
   };
-  console.log(userID);
 
   const myHeaders = ["ID", "Name", "Email", "Station", "action"];
 

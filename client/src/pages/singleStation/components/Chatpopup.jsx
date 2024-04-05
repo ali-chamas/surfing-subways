@@ -37,17 +37,18 @@ const Chatpopup = ({ setOpen, managerID }) => {
         <h2>Chat with stations'manager</h2>
         <div className="chat-container flex column gap">
           {messages.map((message, i) =>
-            message.sender == user.id ? (
-              message.receiver == managerID && (
-                <p className="sender-message bg-secondary p border-radius">
-                  {message.message}
-                </p>
-              )
-            ) : (
-              <p className="receiver-message bg-default p border-radius">
-                {message.message}
-              </p>
-            )
+            message.sender == user.id
+              ? message.receiver == managerID && (
+                  <p className="sender-message bg-secondary p border-radius">
+                    {message.message}
+                  </p>
+                )
+              : message.receiver == user.id &&
+                message.sender == managerID && (
+                  <p className="receiver-message bg-default p border-radius">
+                    {message.message}
+                  </p>
+                )
           )}
         </div>
         <div className="flex small-gap">

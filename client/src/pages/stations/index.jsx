@@ -28,7 +28,10 @@ const Stations = () => {
     const filterValue = e.target.value;
     filterValue == ""
       ? setFilteredStations(stations)
-      : setFilteredStations(stations.sort((a, b) => a.rating > b.rating));
+      : filterValue == "low rated"
+      ? setFilteredStations(stations.sort((a, b) => a.rating - b.rating))
+      : filterValue == "hight rated" &&
+        setFilteredStations(stations.sort((a, b) => a.rating - b.rating));
   };
   useEffect(() => {
     setFilteredStations(stations);
