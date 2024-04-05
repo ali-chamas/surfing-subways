@@ -1,5 +1,6 @@
 import DashboardTable from "../../../common/components/DashboardTable";
 import React, { useState, useEffect } from "react";
+import { sendRequest } from "../../../tools/request/request";
 
 const AdminStations = () => {
   const [stations, setStations] = useState([]);
@@ -10,6 +11,17 @@ const AdminStations = () => {
     password: "",
     location: "",
   });
+  const [imageData, setImageData] = useState("");
+  const [userID, setUserID] = useState(2);
+  const [longitude, setLongitude] = useState(0);
+  const [latitude, setLatitude] = useState(0);
+  const [location, setLocation] = useState("");
+  const [stationName, setStationName] = useState("");
+
+  function handleImageUpload(event) {
+    const file = event.target.files[0];
+    setImageData(file);
+  }
 
   useEffect(() => {
     fetch("http://localhost:8000/api/stations")
@@ -73,8 +85,26 @@ const AdminStations = () => {
         alert("Failed to add manager. Please try again.");
       });
   };
+  console.log(userID);
 
   const myHeaders = ["ID", "Name", "Email", "Station", "action"];
+
+  const handleAddStation = async () => {
+    const reqBody = new FormData();
+    reqBody.append("user_id", userID);
+    reqBody.append("location", location);
+    reqBody.append("name", stationName);
+    reqBody.append("longitude", longitude);
+    reqBody.append("latitude", latitude);
+    reqBody.append("image", imageData);
+
+    try {
+      const res = await sendRequest("POST", "/stations", reqBody);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="flex column align-center w-full">
@@ -129,23 +159,57 @@ const AdminStations = () => {
         <div className="flex column align-center gap add-card bg-black border-radius">
           <h2 className="letter-spacing text-primary">Add Station</h2>
 
-          <input type="text" placeholder="name" required />
+          <input
+            type="text"
+            placeholder="name"
+            onChange={(e) => setStationName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="location"
+            onChange={(e) => setLocation(e.target.value)}
+          />
           <div className="flex justify-around align-center add-card-child">
             <h4 className="text-primary">Coordinates:</h4>
-            <input type="number" placeholder="longitude" required />
-            <input type="number" placeholder="latitude" required />
+            <input
+              type="number"
+              placeholder="longitude"
+              onChange={(e) => setLongitude(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="latitude"
+              onChange={(e) => setLatitude(e.target.value)}
+            />
           </div>
           <div className="flex justify-center align-center gap add-card-child">
-            <input type="file" required />
+            <input
+              type="file"
+              name="image"
+              onChange={(e) => handleImageUpload(e)}
+            />
             <div className="flex column small-gap ">
               <label htmlFor="" className="text-primary bold">
                 Choose Manager
               </label>
-              <select className="input"></select>
+              <select
+                className="input"
+                onChange={(e) => setUserID(e.target.value)}
+              >
+                {users.map(
+                  (user, i) =>
+                    user.role_id == 2 && (
+                      <option value={user.id}>{user.username}</option>
+                    )
+                )}
+              </select>
             </div>
           </div>
 
-          <button className="flex center text-black bg-secondary bold">
+          <button
+            className="flex center text-black bg-secondary bold"
+            onClick={handleAddStation}
+          >
             Add
           </button>
         </div>
