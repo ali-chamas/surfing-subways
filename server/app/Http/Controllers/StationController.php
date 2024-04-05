@@ -77,7 +77,7 @@ class StationController extends Controller
         $station = Station::findOrFail($id);
 
         $validatedData=$request->validate([
-            'user_id' => 'required|integer',
+            'user_id' => 'integer',
             'location' => 'string',
             'name' => 'string',
             'image' => 'image|mimes:jpeg,png,jpg,gif',
@@ -97,8 +97,7 @@ class StationController extends Controller
 
         $station->name = $validatedData['name'];
         $station->image = $filename;
-        $station->operating_hour_from = $validatedData['operating_hour_from'];
-        $station->operating_hour_to = $validatedData['operating_hour_to'];
+        
        
         $station->status = $validatedData['status'];
         
