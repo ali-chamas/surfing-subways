@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { useState } from "react";
+import { sendRequest } from "../tools/request/request";
 
 export const UserContext = createContext();
 
@@ -19,14 +20,22 @@ const UserContextProvider = ({ children }) => {
     window.localStorage.setItem("token", JSON.stringify(token));
   };
 
+  const updateUser = async () => {
+    const res = await sendRequest("GET", `/users/${user.id}`);
+
+    setUser(res.data);
+    window.localStorage.setItem("session", JSON.stringify(res.data));
+  };
+
   const logout = () => {
     setUser(null);
     setToken(null);
     window.localStorage.removeItem("session");
     window.localStorage.removeItem("token");
   };
+
   return (
-    <UserContext.Provider value={{ token, user, login, logout }}>
+    <UserContext.Provider value={{ token, user, login, logout, updateUser }}>
       {children}
     </UserContext.Provider>
   );

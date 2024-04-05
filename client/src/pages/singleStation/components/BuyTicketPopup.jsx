@@ -8,20 +8,31 @@ const BuyTicketPopup = ({
   arrival,
   stationRide,
 }) => {
-  const { user } = useContext(UserContext);
+  const { user, updateUser } = useContext(UserContext);
   const [type, setType] = useState("one-ride");
 
   const handlePurchase = async () => {
-    if (user) {
-      const reqBody = { type: type };
-      const res = await sendRequest(
-        "POST",
-        `users/${user.id}/rides/${stationRide.id}/purchase`,
-        reqBody
-      );
-      console.log(res);
-    } else {
-      toast("please login");
+    try {
+      if (user) {
+        const reqBody = {
+          type: type,
+          price: stationRide.price,
+          departure_station_id: station.id,
+        };
+        const res = await sendRequest(
+          "POST",
+          `users/${user.id}/rides/${stationRide.id}/purchase`,
+          reqBody
+        );
+        console.log(res);
+
+        updateUser();
+        toast("purchased!");
+      } else {
+        toast("please login");
+      }
+    } catch (error) {
+      toast("not enough coins");
     }
   };
 

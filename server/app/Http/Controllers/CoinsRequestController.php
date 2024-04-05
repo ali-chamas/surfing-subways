@@ -52,11 +52,16 @@ class CoinsRequestController extends Controller
 {
     $coinRequest = CoinRequest::findOrFail($id);
 
+<<<<<<< HEAD
     if ($request->status === 'Accepted') {
+=======
+
+
+>>>>>>> 3bf0e61a0d8b22c67665c2772add7dd6c3214aa5
         $user = User::findOrFail($coinRequest->user_id);
         $user->coins += $coinRequest->amount;
         $user->save();
-    }
+
 
     $coinRequest->status = $request->status;
     $coinRequest->approved_by = 1;

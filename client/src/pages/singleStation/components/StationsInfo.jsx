@@ -4,47 +4,35 @@ import "../stationInfo.css";
 import RatingStars from "../../../common/components/RatingStars";
 import { sendRequest } from "../../../tools/request/request";
 
-const StationsInfo = ({ stationInfo }) => {
-  const [facilities, setFacilities] = useState([]);
-
-  const getFacilities = async () => {
-    const res = await sendRequest("GET", `/facilities/${stationInfo.id}`);
-    const data = await res.data;
-    setFacilities(data);
-  };
-
-  useEffect(() => {
-    getFacilities();
-  }, [stationInfo]);
-
+const StationsInfo = ({ stationInfo, facilities }) => {
   return (
-    <>
+    <div className="flex w-full p justify-between info-container">
       <div className="flex column gap stationInfo-section1">
         <div className="flex row">
-          <h3 className="text-primary text-mg-right">Location: </h3>
-          <h3>{stationInfo.location}</h3>
+          <b className="text-primary text-mg-right">Location: </b>
+          <b>{stationInfo.location}</b>
         </div>
         <div className="flex row">
-          <h3 className="text-primary text-mg-right">Operating Hours: </h3>
-          <h3>
+          <b className="text-primary text-mg-right">Operating Hours: </b>
+          <b>
             {stationInfo.operating_hour_from} till{" "}
             {stationInfo.operating_hour_to}
-          </h3>
+          </b>
         </div>
         <div className="flex row small-gap">
-          <h3 className="text-primary text-mg-right">Facilities: </h3>
+          <b className="text-primary text-mg-right">Facilities: </b>
           {facilities.map((f, i) => (
-            <h3 key={i}>{`${f.name},`}</h3>
+            <b key={i}>{`${f.name},`}</b>
           ))}
         </div>
       </div>
       <div className="flex column justify-between align-center stationInfo-section2">
-        <h3 className="text-primary">Rating</h3>
+        <b className="text-primary">Rating</b>
         <RatingStars rating={stationInfo.rating} />
-        <h3>Service Status:</h3>
-        <h3 className="bold text-green">{stationInfo.status}</h3>
+        <b>Service Status:</b>
+        <b className="bold text-green">{stationInfo.status}</b>
       </div>
-    </>
+    </div>
   );
 };
 

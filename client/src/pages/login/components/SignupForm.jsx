@@ -4,7 +4,7 @@ import { sendRequest } from "../../../tools/request/request";
 import { UserContext } from "../../../context/userContext";
 import { useNavigate } from "react-router-dom";
 const SignupForm = ({ setLogin }) => {
-  const { login } = useContext(UserContext);
+  const { login, user } = useContext(UserContext);
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -33,12 +33,12 @@ const SignupForm = ({ setLogin }) => {
 
       try {
         const res = await sendRequest("POST", "/register", reqBody);
-        const data = res.data;
+
+        // console.log(res.data);
         if (res.status == 200) {
-          login(data.username, data.authorisation.token);
+          login(res.data.username, res.data.authorisation.token);
           navigate("/");
         }
-        console.log();
       } catch (error) {
         console.log(error);
         setError(error.response.data.message);

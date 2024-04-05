@@ -18,11 +18,19 @@ const StationsMap = ({ stations }) => {
       >
         <NavigationControl position="top-left" />
         {stations.map((station, i) => (
-          <Marker
-            latitude={station.latitude}
-            longitude={station.longitude}
-            color="rgb(255, 174, 0)"
-          />
+          <div className="flex col gap" key={i}>
+            <Marker
+              latitude={station.latitude}
+              longitude={station.longitude}
+              color="rgb(255, 174, 0)"
+            />
+            <Marker
+              latitude={station.latitude}
+              longitude={station.longitude}
+              children={station.name}
+              style={{ color: "black", fontSize: "18px" }}
+            />
+          </div>
         ))}
       </Map>
     </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('price');
             $table->unsignedBigInteger('departure_station_id');
             $table->unsignedBigInteger('arrival_station_id');
+            $table->integer('rating')->default(0);
             $table->foreign('departure_station_id')->references('id')->on('stations');
             $table->foreign('arrival_station_id')->references('id')->on('stations');
             $table->unsignedTinyInteger('seats')->default(40)->nullable(false)->unsigned();
@@ -38,11 +39,11 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('status');
+            $table->string('status')->default('pending');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('ride_id');
             $table->foreign('ride_id')->references('id')->on('rides');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

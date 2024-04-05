@@ -25,8 +25,9 @@ import ProtectedAdmin from "./routes/ProtectedAdmin";
 import ProtectedManager from "./routes/ProtectedManager";
 import ProtectedLoggedIn from "./routes/ProtectedLoggedIn";
 import StationContextProvider from "./context/stationsContext";
-
+import ProtectedHome from "./routes/ProtectedHome";
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <React.StrictMode>
     <UserContextProvider>
@@ -34,19 +35,23 @@ root.render(
         <BrowserRouter>
           <Routes>
             {/*Passenger */}
-            <Route path="/" element={<Layout children={<App />} />} />
-            <Route
-              path="/stations"
-              element={<Layout children={<Stations />} />}
-            />
-            <Route
-              path="/singleStation/:id"
-              element={<Layout children={<SingleStation />} />}
-            />
-            <Route elemen={<ProtectedLoggedIn />}>
-              <Route path="/login" element={<Layout children={<Login />} />} />
+            <Route element={<ProtectedHome />}>
+              <Route path="/" element={<Layout children={<App />} />} />
+              <Route
+                path="/stations"
+                element={<Layout children={<Stations />} />}
+              />
+              <Route
+                path="/singleStation/:id"
+                element={<Layout children={<SingleStation />} />}
+              />
+              <Route elemen={<ProtectedLoggedIn />}>
+                <Route
+                  path="/login"
+                  element={<Layout children={<Login />} />}
+                />
+              </Route>
             </Route>
-
             <Route element={<ProtectedUser />}>
               {/*Admin */}
               <Route element={<ProtectedAdmin />}>

@@ -3,7 +3,9 @@ import "../styles/stationsCard.css";
 
 import RatingStars from "./RatingStars";
 import { sendRequest } from "../../tools/request/request";
+import { useNavigate } from "react-router-dom";
 const StationsCard = ({ station }) => {
+  const navigate = useNavigate();
   const [facilities, setFacilities] = useState([]);
 
   const getFacilities = async () => {
@@ -18,7 +20,9 @@ const StationsCard = ({ station }) => {
   return (
     <div
       className="station-card"
-      style={{ backgroundImage: `url(${station.image})` }}
+      style={{
+        backgroundImage: `url(http://localhost:8000/station_pictures/${station.image})`,
+      }}
     >
       <div className="station-card-info flex">
         <div className=" flex justify-between p w-full align-center">
@@ -34,12 +38,12 @@ const StationsCard = ({ station }) => {
               ))}
             </div>
           </div>
-          <a
-            href={`/singleStation/${station.id}`}
+          <p
+            onClick={() => navigate(`/singleStation/${station.id}`)}
             className="btn-style bg-secondary text-black"
           >
             View station
-          </a>
+          </p>
         </div>
       </div>
     </div>

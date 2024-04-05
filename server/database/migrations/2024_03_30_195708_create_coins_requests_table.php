@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('status');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('approved_by');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('approved_by')->references('id')->on('users');
             $table->timestamps();
         });

@@ -37,7 +37,7 @@ const Stations = () => {
   return (
     <section className="stations-section flex column  align-center">
       <div className="map-wrap">
-        {/* <StationsMap stations={stations} /> */}
+        <StationsMap stations={stations} />
       </div>
 
       <div className="flex justify-between bg-primary small-gap p border-radius w-full">

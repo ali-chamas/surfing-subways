@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { useNavigate, useLocation } from "react-router-dom";
+import { UserContext } from "../../../context/userContext";
 const ManagerSidebar = () => {
+  const { logout } = useContext(UserContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -60,7 +62,9 @@ const ManagerSidebar = () => {
           My messages
         </button>
       </div>
-      <button className="btn-style bg-danger text-white">Logout</button>
+      <button className="btn-style bg-danger text-white" onClick={logout}>
+        Logout
+      </button>
     </div>
   );
 };

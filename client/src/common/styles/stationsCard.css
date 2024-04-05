@@ -19,7 +19,7 @@
 
 .station-card-info > div {
   align-items: flex-end;
-  padding: 70px 60px;
+  padding: 15px;
 }
 
 @media (max-width: 990px) {
@@ -28,6 +28,12 @@
     width: 300px;
     background-position: center;
     background-size: cover;
+  }
+  .station-card h3 {
+    font-size: 14px;
+  }
+  .station-card p {
+    font-size: 12px;
   }
   .station-card a {
     font-size: 12px;

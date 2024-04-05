@@ -14,7 +14,14 @@ use App\Http\Controllers\StationFacilityController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\PassengerBookingController;
 use App\Http\Controllers\RequestController;
+<<<<<<< HEAD
 use App\Http\Controllers\PasswordResetController;
+=======
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\RideReviewsController;
+
+>>>>>>> 3bf0e61a0d8b22c67665c2772add7dd6c3214aa5
 
 
 Route::get('/user', function (Request $request) {
@@ -42,10 +49,21 @@ Route::post('/users/{id}', [UserController::class, 'update']);
 Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
 
-//Booking Controllers
+//PassengerBooking Controllers
 
 Route::post('users/{userId}/rides/{rideId}/purchase', [PassengerBookingController::class, 'purchaseTicket']);
-Route::get('bookings', [PassengerBookingController::class, 'getAllBookings']);
+
+
+//Ticket Controllers
+
+Route::get('ticket',[TicketController::class, 'index']);
+Route::post('ticket/{id}',[TicketController::class, 'update']);
+
+
+//Manager Controllers
+
+Route::get('manager',[ManagerController::class, 'index']);
+Route::post('manager/{id}',[ManagerController::class, 'update']);
 
 
 //role Controllers
@@ -124,3 +142,8 @@ Route::delete('invitations/{id}', [InvitationController::class, 'invite']);
 
 //RequestInvitation Controller
 Route::post('/requestInvitation', [RequestController::class, 'sendContactForm']);
+
+
+//reviews
+Route::post('/reviews/{ride_id}/{user_id}',[RideReviewsController::class,'addReview']);
+Route::get('/reviews/{ride_id}',[RideReviewsController::class,'getReviews']);
