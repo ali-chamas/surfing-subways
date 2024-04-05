@@ -3,7 +3,9 @@ import React from "react";
 const Hero2 = ({ station }) => {
   return (
     <section
-      style={{ backgroundImage: `url(${station.image})` }}
+      style={{
+        backgroundImage: `url(http://localhost:8000/station_pictures/${station.image})`,
+      }}
       className="hero2-section"
     >
       <div>

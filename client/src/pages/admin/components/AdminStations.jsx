@@ -1,6 +1,7 @@
 import DashboardTable from "../../../common/components/DashboardTable";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { sendRequest } from "../../../tools/request/request";
+import { StationContext } from "../../../context/stationsContext";
 
 const AdminStations = () => {
   const [stations, setStations] = useState([]);
@@ -17,13 +18,13 @@ const AdminStations = () => {
   const [latitude, setLatitude] = useState(0);
   const [location, setLocation] = useState("");
   const [stationName, setStationName] = useState("");
+  const { getStations } = useContext(StationContext);
 
   function handleImageUpload(event) {
     const file = event.target.files[0];
     setImageData(file);
   }
-
-  useEffect(() => {
+  const getAllStations = () => {
     fetch("http://localhost:8000/api/stations")
       .then((response) => response.json())
       .then((data) => {
@@ -32,7 +33,10 @@ const AdminStations = () => {
       .catch((error) => {
         console.error("Error fetching stations data:", error);
       });
+  };
 
+  useEffect(() => {
+    getAllStations();
     fetch("http://localhost:8000/api/users?role_id=2")
       .then((response) => response.json())
       .then((data) => {
@@ -101,6 +105,8 @@ const AdminStations = () => {
     try {
       const res = await sendRequest("POST", "/stations", reqBody);
       console.log(res);
+      getStations();
+      getAllStations();
     } catch (error) {
       console.log(error);
     }

@@ -20,7 +20,9 @@ const StationsCard = ({ station }) => {
   return (
     <div
       className="station-card"
-      style={{ backgroundImage: `url(${station.image})` }}
+      style={{
+        backgroundImage: `url(http://localhost:8000/station_pictures/${station.image})`,
+      }}
     >
       <div className="station-card-info flex">
         <div className=" flex justify-between p w-full align-center">

@@ -27,28 +27,28 @@ class StationController extends Controller
     
     
 
-    // $request->validate([
-    //     'user_id' => 'required|integer',
-    //     'location' => 'required|string',
-    //     'name' => 'required|string',
-    //     'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-    //     'status' => 'string',
-    //     'longitude' => 'required|numeric',
-    //     'latitude' => 'required|numeric',
-    //     'rating' => 'numeric',
-    //     'revenue' => 'numeric',
-    //     'operating_hour_from' => [
+    $request->validate([
+        'user_id' => 'required|integer',
+        'location' => 'required|string',
+        'name' => 'required|string',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+        'status' => 'string',
+        'longitude' => 'required|numeric',
+        'latitude' => 'required|numeric',
+        'rating' => 'numeric',
+        'revenue' => 'numeric',
+        'operating_hour_from' => [
             
-    //         'string',
-    //         'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
-    //     ],
-    //     'operating_hour_to' => [
+            'string',
+            'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
+        ],
+        'operating_hour_to' => [
             
-    //         'string',
-    //         'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
-    //     ],
+            'string',
+            'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
+        ],
 
-    // ]);
+    ]);
     
         $file = $request->file('image');
         $extension = $file->getClientOriginalExtension();
@@ -76,11 +76,11 @@ class StationController extends Controller
     {
         $station = Station::findOrFail($id);
 
-        $request->validate([
+        $validatedData=$request->validate([
             'user_id' => 'required|integer',
             'location' => 'string',
             'name' => 'string',
-            'image' => 'string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif',
             'status' => 'string',
             'rating' => 'numeric',
             'revenue' => 'numeric',
@@ -90,7 +90,20 @@ class StationController extends Controller
             'operating_hour_to' => 'date_format:H:i',
         ]);
 
-        $station->update($request->all());
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $file->move(public_path('/station_pictures/'), $filename);
+
+        $station->name = $validatedData['name'];
+        $station->image = $filename;
+        $station->operating_hour_from = $validatedData['operating_hour_from'];
+        $station->operating_hour_to = $validatedData['operating_hour_to'];
+       
+        $station->status = $validatedData['status'];
+        
+
+        $station->save();
 
         return response()->json(['message' => 'Station updated successfully', 'station' => $station], 200);
     }

@@ -9,9 +9,11 @@ import { sendRequest } from "../../tools/request/request";
 import Loader from "../../common/components/Loader";
 import { FaMessage } from "react-icons/fa6";
 import Chatpopup from "./components/Chatpopup";
+import { UserContext } from "../../context/userContext";
 const App = () => {
   const id = useParams().id;
   const { stations } = useContext(StationContext);
+  const { token } = useContext(UserContext);
   const [thisStation, setThisStation] = useState({});
   const [stationRides, setStationRides] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -55,7 +57,9 @@ const App = () => {
       />
       <div
         className="chat-btn bg-secondary text-black large-font flex center cursor-pointer"
-        onClick={() => setOpenChat(true)}
+        onClick={() => {
+          token && setOpenChat(true);
+        }}
       >
         <FaMessage />
       </div>
