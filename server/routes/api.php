@@ -52,7 +52,7 @@ Route::post('users/{userId}/rides/{rideId}/purchase', [PassengerBookingControlle
 
 //Ticket Controllers
 
-Route::get('ticket',[TicketController::class, 'index']);
+Route::get('ticket/{ride_id}',[TicketController::class, 'index']);
 Route::post('ticket/{id}',[TicketController::class, 'update']);
 
 

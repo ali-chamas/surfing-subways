@@ -9,8 +9,8 @@ use App\Models\Ride;
 
 class TicketController extends Controller
 {
-    public function index(){
-        $tickets = Ticket::all();
+    public function index($rideId){
+        $tickets = Ticket::where('ride_id', $rideId)->get();
         return response()->json($tickets);
     }
 
@@ -18,13 +18,15 @@ class TicketController extends Controller
         
         $ticket = Ticket::findOrFail($id);
 
-        $request->validate([
-            'user_id' => 'required|integer',
-            'type' => 'required|string',
+        $validatedData=$request->validate([
+            'status'=>'required|string',
             'ride_id' => 'required|integer',
         ]);
 
-        $ticket->update($request->only(['user_id', 'type', 'ride_id']));
+        $rideId = $validatedData['ride_id'];
+        $newStatus = $validatedData['status'];
+
+        Ticket::where('ride_id', $rideId)->update(['status' => $newStatus]);
 
         return response()->json(['message' => 'Ticket type updated successfully', 'ticket' => $ticket], 200);
     }

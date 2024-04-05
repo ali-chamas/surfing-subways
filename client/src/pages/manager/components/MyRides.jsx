@@ -15,11 +15,13 @@ const MyRides = () => {
   const [price, setPrice] = useState(0);
   const [myStation, setMyStation] = useState({});
   const [rides, setRides] = useState([]);
+  const [tickets, setTickets] = useState([]);
 
   const handleSetters = (setter, value) => {
     setter(value);
     setIsChanged(true);
   };
+  const [status, setStatus] = useState("pending");
 
   useEffect(() => {
     for (let i = 0; i < stations.length; i++) {
@@ -41,6 +43,26 @@ const MyRides = () => {
     "price",
     "action",
   ];
+
+  const getTickets = async (rideID) => {
+    const res = await sendRequest("GET", `/ticket/${rideID}`);
+    return res.data;
+  };
+
+  const handleUpdate = async (e, ride) => {
+    const reqBody = {
+      ride_id: ride.id,
+      status: e.target.value,
+    };
+    const tickets = await getTickets(ride.id);
+
+    tickets.map(async (ticket) => {
+      const res = await sendRequest("POST", `/ticket/${ticket.id}`, reqBody);
+      console.log(reqBody);
+      console.log(ticket);
+      console.log(res);
+    });
+  };
   const getRides = async () => {
     try {
       const res = await sendRequest("GET", `/stationRides/${myStation.id}`);
@@ -75,6 +97,7 @@ const MyRides = () => {
       console.log(error);
     }
   };
+
   return (
     <div className="flex column w-full gap p">
       <h2>My Rides</h2>
@@ -141,7 +164,14 @@ const MyRides = () => {
                   <td>{ride.price}</td>
 
                   <td>
-                    <button className="btn-style">Edit</button>
+                    <select
+                      onChange={(e) => {
+                        handleUpdate(e, ride);
+                      }}
+                    >
+                      <option value="pending">pending</option>
+                      <option value="arrived">arrived</option>
+                    </select>
                   </td>
                 </tr>
               ))
