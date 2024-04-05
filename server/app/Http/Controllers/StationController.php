@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Station;
+use Faker\Core\File;
 
 class StationController extends Controller
 {
@@ -21,96 +22,65 @@ class StationController extends Controller
 
     public function store(Request $request)
 {
+    
+        
+    
+    
+
     $request->validate([
         'user_id' => 'required|integer',
         'location' => 'required|string',
         'name' => 'required|string',
-        'image' => 'required|string',
-        'status' => 'required|string',
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+        'status' => 'string',
         'longitude' => 'required|numeric',
         'latitude' => 'required|numeric',
         'rating' => 'numeric',
         'revenue' => 'numeric',
         'operating_hour_from' => [
-            'required',
+            
             'string',
             'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
         ],
         'operating_hour_to' => [
-            'required',
+            
             'string',
             'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
         ],
 
     ]);
     
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $file->move(public_path('/station_pictures/'), $filename);
+
     $station = new Station();
     $station->user_id = $request->user_id;
     $station->location = $request->location;
     $station->name = $request->name;
-    $station->image = $request->image;
+    $station->image = $filename;
     $station->longitude = $request->longitude;
     $station->latitude = $request->latitude;
     $station->rating = 0;
     $station->revenue = 0;
-    $station->operating_hour_from = $request->operating_hour_from;
-    $station->operating_hour_to = $request->operating_hour_to;
+    $station->operating_hour_from = 0;
+    $station->operating_hour_to = 0;
     $station->save();
+   
 
     return response()->json(['message' => 'Station created successfully', 'station' => $station], 201);
 }
-
-public function Assignstation(Request $request)
-{
-    $request->validate([
-        'user_id' => 'required|integer',
-        'location' => 'required|string',
-        'name' => 'required|string',
-        'image' => 'required|string',
-        'status' => 'required|string',
-        'longitude' => 'required|numeric',
-        'latitude' => 'required|numeric',
-        'rating' => 'numeric',
-        'revenue' => 'numeric',
-        'operating_hour_from' => [
-            'required',
-            'string',
-            'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
-        ],
-        'operating_hour_to' => [
-            'required',
-            'string',
-            'regex:/^(?:2[0-3]|[01][0-9]):[0-5][0-9]$/'
-        ],
-
-    ]);
-    
-    $station = new Station();
-    $station->user_id = $request->user_id;
-    $station->location = $request->location;
-    $station->name = $request->name;
-    $station->image = $request->image;
-    $station->longitude = $request->longitude;
-    $station->latitude = $request->latitude;
-    $station->rating = 0;
-    $station->revenue = 0;
-    $station->operating_hour_from = $request->operating_hour_from;
-    $station->operating_hour_to = $request->operating_hour_to;
-    $station->save();
-
-    return response()->json(['message' => 'Station created successfully', 'station' => $station], 201);
-}
-
 
     public function update(Request $request, $id)
     {
         $station = Station::findOrFail($id);
 
-        $request->validate([
+        $validatedData=$request->validate([
             'user_id' => 'required|integer',
             'location' => 'string',
             'name' => 'string',
-            'image' => 'string',
+            'image' => 'image|mimes:jpeg,png,jpg,gif',
             'status' => 'string',
             'rating' => 'numeric',
             'revenue' => 'numeric',
@@ -120,7 +90,20 @@ public function Assignstation(Request $request)
             'operating_hour_to' => 'date_format:H:i',
         ]);
 
-        $station->update($request->all());
+        $file = $request->file('image');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $file->move(public_path('/station_pictures/'), $filename);
+
+        $station->name = $validatedData['name'];
+        $station->image = $filename;
+        $station->operating_hour_from = $validatedData['operating_hour_from'];
+        $station->operating_hour_to = $validatedData['operating_hour_to'];
+       
+        $station->status = $validatedData['status'];
+        
+
+        $station->save();
 
         return response()->json(['message' => 'Station updated successfully', 'station' => $station], 200);
     }

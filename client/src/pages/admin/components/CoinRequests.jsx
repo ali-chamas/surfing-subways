@@ -100,11 +100,8 @@ const CoinRequests = () => {
                 </td>
               </tr>
             );
-<<<<<<< HEAD
-=======
             } 
             
->>>>>>> 3bf0e61a0d8b22c67665c2772add7dd6c3214aa5
           })}
         />
       </div>

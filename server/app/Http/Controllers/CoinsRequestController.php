@@ -49,27 +49,23 @@ class CoinsRequestController extends Controller
     }
 
     public function processRequest(Request $request, $id)
-{
-    $coinRequest = CoinRequest::findOrFail($id);
-
-<<<<<<< HEAD
-    if ($request->status === 'Accepted') {
-=======
+    {
+        $coinRequest = CoinRequest::findOrFail($id);
 
 
->>>>>>> 3bf0e61a0d8b22c67665c2772add7dd6c3214aa5
+
         $user = User::findOrFail($coinRequest->user_id);
         $user->coins += $coinRequest->amount;
         $user->save();
 
 
-    $coinRequest->status = $request->status;
-    $coinRequest->approved_by = 1;
-    $coinRequest->save();
-    $coinRequest->delete();
+        $coinRequest->status = $request->status;
+        $coinRequest->approved_by = 1;
+        $coinRequest->save();
+        $coinRequest->delete();
 
-    return response()->json(['message' => 'Coin request processed successfully'], 200);
-}
+        return response()->json(['message' => 'Coin request processed successfully'], 200);
+    }
 
 
     public function destroy($id)

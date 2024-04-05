@@ -14,14 +14,10 @@ use App\Http\Controllers\StationFacilityController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\PassengerBookingController;
 use App\Http\Controllers\RequestController;
-<<<<<<< HEAD
-use App\Http\Controllers\PasswordResetController;
-=======
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\RideReviewsController;
 
->>>>>>> 3bf0e61a0d8b22c67665c2772add7dd6c3214aa5
 
 
 Route::get('/user', function (Request $request) {
@@ -106,16 +102,6 @@ Route::post('/coin-requests/{id}/process', [CoinsRequestController::class, 'proc
 
 Route::post('invitations', [InvitationController::class, 'sendInvitation']);
 Route::delete('invitations/{id}', [InvitationController::class, 'cancelInvitation']);
-
-
-//otp controllers
-
-Route::get('/forgot-password', [PasswordResetController::class, 'showForgotPasswordForm']);
-Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLink']);
-Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetForm']);
-Route::post('/reset-password', [PasswordResetController::class, 'resetPassword']);
-
-
 
 
 //Station Controllers

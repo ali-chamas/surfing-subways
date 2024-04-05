@@ -73,8 +73,6 @@ class AuthController extends Controller
             $user->role_id = 2;
             $user->save();
         }
-<<<<<<< HEAD
-=======
         $token = Auth::login($user);
         return response()->json([
             'status' => 'success',
@@ -86,7 +84,6 @@ class AuthController extends Controller
             ]
         ]);
 
->>>>>>> 3bf0e61a0d8b22c67665c2772add7dd6c3214aa5
     }
 
         public function registerManager(Request $request)
