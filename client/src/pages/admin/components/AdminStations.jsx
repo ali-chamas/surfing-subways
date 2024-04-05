@@ -35,8 +35,7 @@ const AdminStations = () => {
       });
   };
 
-  useEffect(() => {
-    getAllStations();
+  const getAllUsers = () => {
     fetch("http://localhost:8000/api/users?role_id=2")
       .then((response) => response.json())
       .then((data) => {
@@ -45,6 +44,10 @@ const AdminStations = () => {
       .catch((error) => {
         console.error("Error fetching users data:", error);
       });
+  };
+  useEffect(() => {
+    getAllStations();
+    getAllUsers();
   }, []);
 
   const deleteStation = (id) => {
@@ -79,6 +82,7 @@ const AdminStations = () => {
             password: "",
             location: "",
           });
+          getAllUsers();
           // alert("Manager added successfully!"); Add the notification
         } else {
           throw new Error("Failed to add manager");
