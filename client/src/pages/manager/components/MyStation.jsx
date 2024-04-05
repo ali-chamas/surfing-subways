@@ -23,7 +23,7 @@ const MyStation = () => {
   const getFacilities = async (id) => {
     const res = await sendRequest("GET", `facilities/${id}`);
     console.log(res.data);
-    setAllFacilities(res.data);
+    if (res.data.length > 0) setAllFacilities(res.data);
   };
 
   useEffect(() => {

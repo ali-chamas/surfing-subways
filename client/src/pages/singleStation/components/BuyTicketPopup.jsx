@@ -32,7 +32,8 @@ const BuyTicketPopup = ({
         toast("please login");
       }
     } catch (error) {
-      toast("not enough coins");
+      toast("not enough coins or station not active");
+      console.log(error);
     }
   };
 

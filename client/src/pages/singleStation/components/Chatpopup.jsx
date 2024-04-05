@@ -4,8 +4,8 @@ import { sendRequest } from "../../../tools/request/request";
 
 const Chatpopup = ({ setOpen, managerID }) => {
   const { user } = useContext(UserContext);
-  const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
   const sendMessage = async () => {
     const reqBody = {
@@ -38,9 +38,11 @@ const Chatpopup = ({ setOpen, managerID }) => {
         <div className="chat-container flex column gap">
           {messages.map((message, i) =>
             message.sender == user.id ? (
-              <p className="sender-message bg-secondary p border-radius">
-                {message.message}
-              </p>
+              message.receiver == managerID && (
+                <p className="sender-message bg-secondary p border-radius">
+                  {message.message}
+                </p>
+              )
             ) : (
               <p className="receiver-message bg-default p border-radius">
                 {message.message}

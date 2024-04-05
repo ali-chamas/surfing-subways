@@ -33,9 +33,14 @@ const ReviewsPopup = ({
         </div>
 
         <div className="flex column w-full mg gap">
-          {review.map((rev, i) => (
-            <Reviews review={rev} key={i} />
-          ))}
+          {review.length > 0 ? (
+            review.map((rev, i) => <Reviews review={rev} key={i} />)
+          ) : (
+            <div className="flex column gap align-center">
+              <h2>No reviews yet</h2>
+              <p>be the first the reviewer!</p>
+            </div>
+          )}
         </div>
 
         <p

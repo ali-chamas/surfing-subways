@@ -1,107 +1,38 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import DashboardTable from "../../../common/components/DashboardTable";
 import { StationContext } from "../../../context/stationsContext";
+import { sendRequest } from "../../../tools/request/request";
+import { UserContext } from "../../../context/userContext";
 const MyRides = () => {
   const { stations } = useContext(StationContext);
-  const [allStations, setStations] = useState(stations);
+  const { user } = useContext(UserContext);
+
   const [isChanged, setIsChanged] = useState(false);
-  const [chosenStation, setChosenStation] = useState(stations[0].id);
+  const [chosenStation, setChosenStation] = useState(2);
   const [departure, setDeparture] = useState("");
   const [arrival, setArrival] = useState("");
   const [price, setPrice] = useState(0);
+  const [myStation, setMyStation] = useState({});
+  const [rides, setRides] = useState([]);
 
   const handleSetters = (setter, value) => {
     setter(value);
     setIsChanged(true);
   };
 
-  const rides = [
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-    {
-      arrival: "dsdsa",
-      deap_time: "10.00",
-      arr_time: "20.00",
-      price: 22,
-    },
-  ];
+  useEffect(() => {
+    for (let i = 0; i < stations.length; i++) {
+      if (stations[i].user_id === user.id) {
+        setMyStation(stations[i]);
+        break;
+      }
+    }
+  }, [stations.length]);
+
+  useEffect(() => {
+    getRides();
+  }, [myStation]);
 
   const myHeaders = [
     "arrival_station",
@@ -110,8 +41,40 @@ const MyRides = () => {
     "price",
     "action",
   ];
+  const getRides = async () => {
+    try {
+      const res = await sendRequest("GET", `/stationRides/${myStation.id}`);
+      console.log(res);
+      if (res.status == 200 && res.data.length > 0) {
+        setRides(res.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  console.log();
+  const identifyStationName = (id) => {
+    for (let i = 0; i < stations.length; i++) {
+      if (stations[i].id == id) return stations[i].name;
+    }
+  };
+
+  const handleAdd = async () => {
+    const reqBody = {
+      departure_station_id: myStation.id,
+      arrival_station_id: chosenStation,
+      arrival_time: arrival,
+      departure_time: departure,
+      price: price,
+    };
+    try {
+      const res = await sendRequest("POST", "/rides", reqBody);
+      console.log(res);
+      getRides();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="flex column w-full gap p">
       <h2>My Rides</h2>
@@ -124,7 +87,7 @@ const MyRides = () => {
               className="input"
               onChange={(e) => handleSetters(setChosenStation, e.target.value)}
             >
-              {allStations.map((station, i) => (
+              {stations.map((station, i) => (
                 <option key={i} value={station.id}>
                   {station.name}
                 </option>
@@ -159,6 +122,7 @@ const MyRides = () => {
             disabled={!isChanged}
             type="button"
             className="bg-secondary btn-style save-btn"
+            onClick={handleAdd}
           >
             Save Changes
           </button>
@@ -167,17 +131,21 @@ const MyRides = () => {
           <h2>Rides</h2>
           <DashboardTable
             headers={myHeaders}
-            body={rides.map((ride, i) => (
-              <tr>
-                <td>{ride.arr_time}</td>
-                <td>{ride.deap_time}</td>
-                <td>{ride.price}</td>
-                <td>{ride.arrival}</td>
-                <td>
-                  <button className="btn-style">Edit</button>
-                </td>
-              </tr>
-            ))}
+            body={
+              rides.length > 0 &&
+              rides.map((ride, i) => (
+                <tr>
+                  <td>{identifyStationName(ride.arrival_station_id)}</td>
+                  <td>{identifyStationName(ride.departure_station_id)}</td>
+                  <td>{ride.arrival_time}</td>
+                  <td>{ride.price}</td>
+
+                  <td>
+                    <button className="btn-style">Edit</button>
+                  </td>
+                </tr>
+              ))
+            }
           />
         </div>
       </div>
